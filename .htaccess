@@ -1,0 +1,52 @@
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ 
+ #Protected Pages
+ RewriteCond %{REQUEST_URI} ^/framework_template/login/
+ RewriteCond %{REQUEST_FILENAME} -d
+ RewriteRule . ErrorDocument/403.php [L]    
+ 
+ #Action Page
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ 
+ RewriteRule index$    							index.php [L] 
+ RewriteRule index.exe$    						index.php [L] 
+ RewriteRule index.jsp$    						index.php [L] 
+ RewriteRule index.asp$    						index.php [L] 
+ RewriteRule index.css$    						index.php [L] 
+
+ RewriteRule profil/?$    						profil.php [L]   
+ RewriteRule profil/([^/.]+)/?$					profil.php?do_act=$1  [L]	 
+ RewriteRule profil/([^/.]+)/([^/.]+)?$			profil.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule product_travel/?$    				product_travel.php [L]   
+ RewriteRule product_travel/([^/.]+)/?$			product_travel.php?do_act=$1  [L]	 
+ RewriteRule product_travel/([^/.]+)/([^/.]+)?$	product_travel.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule product_furniture/?$    				product_furniture.php [L]   
+ RewriteRule product_furniture/([^/.]+)/?$			product_furniture.php?do_act=$1  [L]	 
+ RewriteRule product_furniture/([^/.]+)/([^/.]+)?$	product_furniture.php?do_act=$1&id_parameter=$2  [L]
+ 
+ RewriteRule product_kurban/?$	    				product_kurban.php [L]   
+ RewriteRule product_kurban/([^/.]+)/?$			product_kurban.php?do_act=$1  [L]	 
+ RewriteRule product_kurban/([^/.]+)/([^/.]+)?$	product_kurban.php?do_act=$1&id_parameter=$2  [L]
+ 
+ RewriteRule cara_pemesanan/?$	    			cara_pemesanan.php [L]   
+ RewriteRule cara_pemesanan/([^/.]+)/?$			cara_pemesanan.php?do_act=$1  [L]	 
+ RewriteRule cara_pemesanan/([^/.]+)/([^/.]+)?$	cara_pemesanan.php?do_act=$1&id_parameter=$2  [L]
+
+ RewriteRule cara_pembayaran/?$	    			cara_pembayaran.php [L]   
+ RewriteRule cara_pembayaran/([^/.]+)/?$			cara_pembayaran.php?do_act=$1  [L]	 
+ RewriteRule cara_pembayaran/([^/.]+)/([^/.]+)?$	cara_pembayaran.php?do_act=$1&id_parameter=$2  [L]
+ 
+ RewriteRule contact/?$    						contact.php [L]   
+ RewriteRule contact/([^/.]+)/?$				contact.php?do_act=$1  [L]	 
+ RewriteRule contact/([^/.]+)/([^/.]+)?$		contact.php?do_act=$1&id_parameter=$2  [L]	 
+
+ RewriteRule jasa/?$    						jasa.php [L]   
+ RewriteRule jasa/([^/.]+)/?$					jasa.php?id_parameter=$1  [L]
+
+ RewriteRule report/?$    						report.php [L]    
+ RewriteRule report/([^/.]+)/?$					report.php?&id_parameter=$1  [L]	 
+</IfModule>

@@ -1,0 +1,62 @@
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ 
+ #Protected Pages
+ RewriteCond %{REQUEST_URI} ^/framework_template/login/
+ RewriteCond %{REQUEST_FILENAME} -d
+ RewriteRule . ErrorDocument/403.php [L]    
+ 
+ #Action Page
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ 
+ RewriteRule index$    							index.php [L] 
+ RewriteRule index.exe$    						index.php [L] 
+ RewriteRule index.jsp$    						index.php [L] 
+ RewriteRule index.asp$    						index.php [L] 
+ RewriteRule index.css$    						index.php [L] 
+
+ RewriteRule auth/?$    						auth.php [L]   
+ RewriteRule auth/([^/.]+)/?$					auth.php?do_act=$1  [L]	 
+
+ RewriteRule home/?$    						home.php [L]   
+ RewriteRule home/([^/.]+)/?$					home.php?do_act=$1  [L]	 
+ RewriteRule home/([^/.]+)/([^/.]+)?$			home.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule merek/?$    						merek.php [L]   
+ RewriteRule merek/([^/.]+)/?$					merek.php?do_act=$1  [L]	 
+ RewriteRule merek/([^/.]+)/([^/.]+)?$			merek.php?do_act=$1&id_parameter=$2  [L] 
+
+ RewriteRule keluhan/?$    						keluhan.php [L]   
+ RewriteRule keluhan/([^/.]+)/?$				keluhan.php?do_act=$1  [L]	 
+ RewriteRule keluhan/([^/.]+)/([^/.]+)?$		keluhan.php?do_act=$1&id_parameter=$2  [L]
+
+ RewriteRule faq/?$    							faq.php [L]   
+ RewriteRule faq/([^/.]+)/?$					faq.php?do_act=$1  [L]	 
+ RewriteRule faq/([^/.]+)/([^/.]+)?$			faq.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule slider/?$    						slider.php [L]   
+ RewriteRule slider/([^/.]+)/?$					slider.php?do_act=$1  [L]	 
+ RewriteRule slider/([^/.]+)/([^/.]+)?$			slider.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule galeri/?$    						galeri.php [L]   
+ RewriteRule galeri/([^/.]+)/?$					galeri.php?do_act=$1  [L]	 
+ RewriteRule galeri/([^/.]+)/([^/.]+)?$			galeri.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule testimoni/?$    					testimoni.php [L]   
+ RewriteRule testimoni/([^/.]+)/?$				testimoni.php?do_act=$1  [L]	 
+ RewriteRule testimoni/([^/.]+)/([^/.]+)?$		testimoni.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule kritik_saran/?$    				kritik_saran.php [L]   
+ RewriteRule kritik_saran/([^/.]+)/?$			kritik_saran.php?do_act=$1  [L]	 
+ RewriteRule kritik_saran/([^/.]+)/([^/.]+)?$	kritik_saran.php?do_act=$1&id_parameter=$2  [L]	
+
+ RewriteRule website/?$    						website.php [L]   
+ RewriteRule website/([^/.]+)/?$				website.php?do_act=$1  [L]	 
+ RewriteRule website/([^/.]+)/([^/.]+)?$		website.php?do_act=$1&id_parameter=$2  [L]
+
+ RewriteRule pemesanan/?$    					pemesanan.php [L]   
+ RewriteRule pemesanan/([^/.]+)/?$				pemesanan.php?do_act=$1  [L]	 
+ RewriteRule pemesanan/([^/.]+)/([^/.]+)?$		pemesanan.php?do_act=$1&id_parameter=$2  [L]	
+
+</IfModule>

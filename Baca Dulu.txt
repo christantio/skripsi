@@ -1,0 +1,41 @@
+===========Properti Aplikasi======================
+
+#DATABASE
+Database 	:  skripsi_v3
+Vendor Database :  MYSQL
+File database ada di folder "database"
+
+#CODE
+Bahasa Pemograman 		: PHP 5.6
+Bahasa Pemograman Routing URL 	: htaccess
+Bahasa Desain 			: HTML, CSS, Boostrap
+Bahasa Interaktif 		: Javascript, Jquery, JSON, Ajax
+Plugin Tambahan 		: Sweet alert, Datepicker, CKEDITOR, JQUERY UPLOAD, Owl Carousel
+
+#Server
+Server Rekomandsi : Apache, Cpanel
+OS Support  : Windows / Linux  
+Support dengan XAMPP/WAMPP
+
+*Jika belum ada XAMPP download disini
+https://www.apachefriends.org/download.html 
+Download PHP versi 5.6
+
+==============Configurasi Aplikasi===============
+1. Pastikan ada file ".htaccess"  pada folder  "login" dan di luar folder "login", jika tidak ada maka aplikasi 
+   tidak akan jalan.
+
+   *FYI isi file ".htaccess" pada folder "login" dan di luar folder "login"
+
+2. Buat nama database "service_ac", 
+   jika ingin nama databasenya berbeda maka nama database harus di rubah pada file "General_Controller.php" Line 8
+
+3. Jika database sudah di buat maka import file database yang sudah ada di folder "database"
+
+4. Nama folder project default "skripsi_v3" jika ingin mengubahnya 
+   harus di rubah pada file "General_Controller.php" Line 26,27,28
+
+5. Admin login 
+   http://localhost/folder_project/login
+   Username : admin
+   Password : admin
