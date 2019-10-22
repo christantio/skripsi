@@ -27,7 +27,7 @@ Download PHP versi 5.6
 
    *FYI isi file ".htaccess" pada folder "login" dan di luar folder "login"
 
-2. Buat nama database "service_ac", 
+2. Buat nama database "skripsi_v3", 
    jika ingin nama databasenya berbeda maka nama database harus di rubah pada file "General_Controller.php" Line 8
 
 3. Jika database sudah di buat maka import file database yang sudah ada di folder "database"
