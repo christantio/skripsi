@@ -9,9 +9,15 @@
           <li class="nav-item">
             <a class="nav-link" href="merek">
               <i class="mdi mdi-bookmark menu-icon"></i>              
-              <span class="menu-title">Merek</span>              
+              <span class="menu-title">Kategori</span>              
             </a>
-          </li> 
+          </li>
+		 <li class="nav-item">
+            <a class="nav-link" href="produk">
+              <i class="mdi mdi-bookmark menu-icon"></i>              
+              <span class="menu-title">Produk</span>              
+            </a>
+          </li>	
           <li class="nav-item">
             <a class="nav-link" href="keluhan">
               <i class="mdi mdi-library-books menu-icon"></i>              

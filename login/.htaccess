@@ -23,9 +23,9 @@
  RewriteRule home/([^/.]+)/?$					home.php?do_act=$1  [L]	 
  RewriteRule home/([^/.]+)/([^/.]+)?$			home.php?do_act=$1&id_parameter=$2  [L]	
 
- RewriteRule merek/?$    						merek.php [L]   
- RewriteRule merek/([^/.]+)/?$					merek.php?do_act=$1  [L]	 
- RewriteRule merek/([^/.]+)/([^/.]+)?$			merek.php?do_act=$1&id_parameter=$2  [L] 
+ RewriteRule kategori/?$    						kategori.php [L]   
+ RewriteRule kategori/([^/.]+)/?$					kategori.php?do_act=$1  [L]	 
+ RewriteRule kategori/([^/.]+)/([^/.]+)?$			kategori.php?do_act=$1&id_parameter=$2  [L] 
 
  RewriteRule keluhan/?$    						keluhan.php [L]   
  RewriteRule keluhan/([^/.]+)/?$				keluhan.php?do_act=$1  [L]	 
