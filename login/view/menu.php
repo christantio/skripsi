@@ -7,7 +7,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="merek">
+            <a class="nav-link" href="kategori">
               <i class="mdi mdi-bookmark menu-icon"></i>              
               <span class="menu-title">Kategori</span>              
             </a>
