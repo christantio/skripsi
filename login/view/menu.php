@@ -9,6 +9,12 @@
           <li class="nav-item">
             <a class="nav-link" href="kategori">
               <i class="mdi mdi-bookmark menu-icon"></i>              
+              <span class="menu-title">Customer</span>              
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="kategori">
+              <i class="mdi mdi-bookmark menu-icon"></i>              
               <span class="menu-title">Kategori</span>              
             </a>
           </li>
@@ -33,7 +39,7 @@
           <li class="nav-item">
             <a class="nav-link" href="pemesanan">
               <i class="mdi mdi-cart menu-icon"></i>              
-              <span class="menu-title">Pemesanan</span>              
+              <span class="menu-title">Perencanaan</span>              
             </a>
           </li>
           <li class="nav-item">
@@ -57,7 +63,7 @@
           <li class="nav-item">
             <a class="nav-link" href="galeri">
               <i class="mdi mdi-panorama menu-icon"></i>              
-              <span class="menu-title">Galeri</span>              
+              <span class="menu-title">Vendor</span>              
             </a>
           </li>
          <li class="nav-item">

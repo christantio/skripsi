@@ -1,8 +1,8 @@
 <?php 
-class merek { 
-	function getDataMerek($where,$order,$limit){
+class kategori { 
+	function getDataKategori($where,$order,$limit){
 		  global $db;
-		  $sql = "SELECT  mrk.* FROM merek as mrk
+		  $sql = "SELECT  ktg.* FROM kategori as ktg
 					".$where."  ".$order.$limit;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
@@ -12,9 +12,9 @@ class merek {
 		  	return $rs;
 		  }
 	}
-	function getCountMerek($where){
+	function getCountKategori($where){
 		  global $db;
-		  $sql = "SELECT  mrk.id_merek FROM merek as mrk ".$where;
+		  $sql = "SELECT  ktg.id_kategori FROM kategori as ktg ".$where;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	

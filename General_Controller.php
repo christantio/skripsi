@@ -23,9 +23,9 @@ if (!$status ) {
 
 //Hapus atau Berikan Komentar jika ingin menggunakan jam server
 date_default_timezone_set("Asia/Jakarta");
-$root_folder   = $_SERVER['DOCUMENT_ROOT']."/skripsi_v3/";
-$basepath      = "http://".$_SERVER['HTTP_HOST']."/skripsi_v3/";
-$basepath_admin      = "http://".$_SERVER['HTTP_HOST']."/skripsi_v3/login/";
+$root_folder   = $_SERVER['DOCUMENT_ROOT']."/skripsi/";
+$basepath      = "http://".$_SERVER['HTTP_HOST']."/skripsi/";
+$basepath_admin      = "http://".$_SERVER['HTTP_HOST']."/skripsi/login/";
 $secret_key    = "skripsi_v3";
 $date_now_indo = date("Y-m-d");
 $date_now_indo_full = date("Y-m-d H:i:s");
@@ -236,7 +236,6 @@ class General_Controller {
 	if ( isset( $input['iDisplayStart'] ) && $input['iDisplayLength'] != '-1' ) {
 		$sLimit = " LIMIT ".intval( $input['iDisplayStart'] ).", ".intval( $input['iDisplayLength'] );
 	}
-
 	return $sLimit;
 	}
 

@@ -7,9 +7,9 @@ $gen_controller  = new General_Controller();
 include "../model/General_Model.php";
 $gen_model      = new General_Model();
 
-//Model Merek
-include "model/merek.php";
-$md_merek      = new merek();
+//Model kategori
+include "model/kategori.php";
+$md_kategori      = new kategori();
 
 //Model User
 include "model/user.php";
@@ -34,19 +34,19 @@ if(isset($_GET['id_parameter'])){
 if($act=="" or $act==null) {
   //View
   include "view/header.php";
-  include "view/merek.php";
+  include "view/kategori.php";
   include "view/footer.php";
 }
 else if($act=="do_add"){
   if(!empty($_SESSION['user_id'])){
-    //Proses
+	//Proses
     $insert_data = array();
-    $insert_data['merek']                 = addslashes($_POST['merek']);
+    $insert_data['kategori']                 = addslashes($_POST['kategori']);
     $insert_data['created_date']          = $date_now_indo_full;
     $insert_data['last_update']           = $date_now_indo_full;
     
-    if($insert_data['merek']!=""){
-        echo $gen_model->Insert('merek',$insert_data);
+    if($insert_data['kategori']!=""){
+        echo $gen_model->Insert('kategori',$insert_data);
     }
     else {
         echo 'Terjadi kesalahan';
@@ -58,27 +58,27 @@ else if($act=="do_add"){
 }
 
 else if($act=="edit" and $id_parameter!=""){
-    $edit = $gen_model->GetOneRow('merek',array('id_merek'=>$gen_controller->decrypt($id_parameter))); 
-    foreach($edit as $key=>$val){
+	$edit = $gen_model->GetOneRow('kategori',array('id_kategori'=>$gen_controller->decrypt($id_parameter))); 
+	foreach($edit as $key=>$val){
                   $key=strtolower($key);
                   $$key=$val;
     }
-    $data = array('id_merek'=>$gen_controller->encrypt($id_merek),'merek'=>$merek);
+    $data = array('id_kategori'=>$gen_controller->encrypt($id_kategori),'kategori'=>$kategori);
     echo json_encode($data); 
 }
 else if($act=="do_update"){
   if(!empty($_SESSION['user_id'])){ 
         //Proses
           $update_data = array();
-          $update_data['merek']          = addslashes($_POST['merek']);
+          $update_data['kategori']          = addslashes($_POST['kategori']);
           $update_data['last_update']    = $date_now_indo_full;
        
         //Paramater
           $where_data = array();
-          $where_data['id_merek']             = $gen_controller->decrypt($_POST['id_parameter']);
+          $where_data['id_kategori']             = $gen_controller->decrypt($_POST['id_parameter']);
         
-        if($update_data['merek']!=""){
-          echo $gen_model->Update('merek',$update_data,$where_data);
+        if($update_data['kategori']!=""){
+          echo $gen_model->Update('kategori',$update_data,$where_data);
         }
         else {
           echo 'Terjadi kesalahan';
@@ -92,25 +92,23 @@ else if($act=="do_delete"){
   if(!empty($_SESSION['user_id'])){ 
     //Paramater
     $where_data = array();
-    $where_data['id_merek']  = $gen_controller->decrypt($_POST['id_parameter']);
-    echo $gen_model->Delete('merek',$where_data);
+    $where_data['id_kategori']  = $gen_controller->decrypt($_POST['id_parameter']);
+    echo $gen_model->Delete('kategori',$where_data);
   }
   else {
     echo 'NOT_LOGIN';
   }
 }
 else if($act=="list_rest"){
-  $aColumns = array('mrk.merek','mrk.created_date','mrk.last_update','mrk.id_merek'); //Kolom Pada Tabel
-
+  $aColumns = array('ktg.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
   	// Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;
 	$iColumnCount = count($aColumns);
-
-
+	
 	$sLimit = $gen_controller->Paging($input);
+	
 	$sOrder = $gen_controller->Ordering($input, $aColumns );
 	$sWhere = $gen_controller->Filtering($aColumns, $iColumnCount, $input);
-
 	$aQueryColumns = array();
 	foreach ($aColumns as $col) {
 		if ($col != ' ') {
@@ -118,8 +116,8 @@ else if($act=="list_rest"){
 		}
 	}
 
-	$rResult 				= $md_merek->getDataMerek($sWhere,$sOrder,$sLimit);
-	$rResultFilterTotal 	= $md_merek->getCountMerek($sWhere);
+	$rResult 				= $md_kategori->getDataKategori($sWhere,$sOrder,$sLimit);
+	$rResultFilterTotal 	= $md_kategori->getCountKategori($sWhere);
 
 
 	$output = array(
@@ -131,13 +129,13 @@ else if($act=="list_rest"){
 
 	while($aRow = $rResult->FetchRow()){
 
-		$param_id = $gen_controller->encrypt($aRow['id_merek']);
+		$param_id = $gen_controller->encrypt($aRow['id_kategori']);
 		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
 		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
 	 	$row = array();
-	 	$row = array($aRow['merek'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['kategori'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);
