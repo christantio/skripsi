@@ -1,8 +1,8 @@
 <?php 
-class galeri { 
-	function getDataGaleri($where,$order,$limit){
+class vendor { 
+	function getDataVendor($where,$order,$limit){
 		  global $db;
-		  $sql = "SELECT  gl.* FROM galeri as gl
+		  $sql = "SELECT  vdr.* FROM vendor as vdr
 					".$where."  ".$order.$limit;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
@@ -12,9 +12,9 @@ class galeri {
 		  	return $rs;
 		  }
 	}
-	function getCountGaleri($where){
+	function getCountVendor($where){
 		  global $db;
-		  $sql = "SELECT  gl.id_galeri FROM galeri as gl  ".$where;
+		  $sql = "SELECT  vdr.id_vendor FROM vendor as vdr  ".$where;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	

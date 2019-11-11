@@ -7,9 +7,9 @@ $gen_controller  = new General_Controller();
 include "../model/General_Model.php";
 $gen_model      = new General_Model();
 
-//Model kategori
-include "model/kategori.php";
-$md_kategori      = new kategori();
+//Model vendor
+include "model/vendor.php";
+$md_sl      = new vendor();
 
 //Model User
 include "model/user.php";
@@ -34,23 +34,18 @@ if(isset($_GET['id_parameter'])){
 if($act=="" or $act==null) {
   //View
   include "view/header.php";
-  include "view/kategori.php";
+  include "view/vendor.php";
   include "view/footer.php";
 }
 else if($act=="do_add"){
   if(!empty($_SESSION['user_id'])){
 	//Proses
-    $insert_data = array();
-    $insert_data['kategori']              = addslashes($_POST['kategori']);
-    $insert_data['created_date']          = $date_now_indo_full;
-    $insert_data['last_update']           = $date_now_indo_full;
-    
-    if($insert_data['kategori']!=""){
-        echo $gen_model->Insert('kategori',$insert_data);
-    }
-    else {
-        echo 'Terjadi kesalahan';
-    }
+	 $insert_data = array();
+	 $insert_data['Nama_vendor']           = addslashes($_POST['Nama_vendor']);
+	 $insert_data['created_date']          = $date_now_indo_full;
+	 $insert_data['last_update']           = $date_now_indo_full;
+  
+	 echo $gen_model->Insert('vendor',$insert_data);
   }
   else {
     echo 'NOT_LOGIN';
@@ -58,31 +53,31 @@ else if($act=="do_add"){
 }
 
 else if($act=="edit" and $id_parameter!=""){
-	$edit = $gen_model->GetOneRow('kategori',array('id_kategori'=>$gen_controller->decrypt($id_parameter))); 
-	foreach($edit as $key=>$val){
+    $edit = $gen_model->GetOneRow('vendor',array('id_vendor'=>$gen_controller->decrypt($id_parameter))); 
+    foreach($edit as $key=>$val){
                   $key=strtolower($key);
                   $$key=$val;
     }
-    $data = array('id_kategori'=>$gen_controller->encrypt($id_kategori),'kategori'=>$kategori);
+    $data = array('id_vendor'=>$gen_controller->encrypt($id_vendor),'gambar'=>$basepath."assets/images/vendor/".$gambar);
     echo json_encode($data); 
 }
 else if($act=="do_update"){
   if(!empty($_SESSION['user_id'])){ 
+       
         //Proses
-          $update_data = array();
-          $update_data['kategori']          = addslashes($_POST['kategori']);
-          $update_data['last_update']    = $date_now_indo_full;
+         $update_data = array();
+         $update_data['last_update']    = $date_now_indo_full;
+          
+         $update_data['gambar']    = $foto_name;
+        
        
         //Paramater
           $where_data = array();
-          $where_data['id_kategori']             = $gen_controller->decrypt($_POST['id_parameter']);
-        
-        if($update_data['kategori']!=""){
-          echo $gen_model->Update('kategori',$update_data,$where_data);
-        }
-        else {
-          echo 'Terjadi kesalahan';
-        }
+          $where_data['id_vendor']             = $gen_controller->decrypt($_POST['id_parameter']);
+       
+
+          echo $gen_model->Update('vendor',$update_data,$where_data);
+
   }
   else {
     echo 'NOT_LOGIN';
@@ -92,23 +87,30 @@ else if($act=="do_delete"){
   if(!empty($_SESSION['user_id'])){ 
     //Paramater
     $where_data = array();
-    $where_data['id_kategori']  = $gen_controller->decrypt($_POST['id_parameter']);
-    echo $gen_model->Delete('kategori',$where_data);
+    $where_data['id_vendor']  = $gen_controller->decrypt($_POST['id_parameter']);
+    
+    //Hapus Foto
+    $path      = "../assets/images/vendor/";
+    $foto_name = $gen_model->GetOne('gambar','vendor',$where_data);
+    $gen_controller->delete_file($path,$foto_name);
+    echo $gen_model->Delete('vendor',$where_data);
   }
   else {
     echo 'NOT_LOGIN';
   }
 }
 else if($act=="list_rest"){
-  $aColumns = array('ktg.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
+  $aColumns = array('vdr.Nama_vendor','vdr.created_date','vdr.last_update','vdr.id_vendor'); //Kolom Pada Tabel
+
   	// Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;
 	$iColumnCount = count($aColumns);
-	
+
+
 	$sLimit = $gen_controller->Paging($input);
-	
 	$sOrder = $gen_controller->Ordering($input, $aColumns );
 	$sWhere = $gen_controller->Filtering($aColumns, $iColumnCount, $input);
+
 	$aQueryColumns = array();
 	foreach ($aColumns as $col) {
 		if ($col != ' ') {
@@ -116,8 +118,8 @@ else if($act=="list_rest"){
 		}
 	}
 
-	$rResult 				= $md_kategori->getDataKategori($sWhere,$sOrder,$sLimit);
-	$rResultFilterTotal 	= $md_kategori->getCountKategori($sWhere);
+	$rResult 				= $md_sl->getDatavendor($sWhere,$sOrder,$sLimit);
+	$rResultFilterTotal 	= $md_sl->getCountvendor($sWhere);
 
 
 	$output = array(
@@ -129,13 +131,13 @@ else if($act=="list_rest"){
 
 	while($aRow = $rResult->FetchRow()){
 
-		$param_id = $gen_controller->encrypt($aRow['id_kategori']);
+		$param_id = $gen_controller->encrypt($aRow['id_vendor']);
 		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
 		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
 	 	$row = array();
-	 	$row = array($aRow['kategori'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['Nama_vendor'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);

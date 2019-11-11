@@ -8,7 +8,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="kategori">
-              <i class="mdi mdi-bookmark menu-icon"></i>              
+              <i class="mdi mdi-account-multiple-plus menu-icon"></i>              
               <span class="menu-title">Customer</span>              
             </a>
           </li>
@@ -20,16 +20,16 @@
           </li>
 		 <li class="nav-item">
             <a class="nav-link" href="produk">
-              <i class="mdi mdi-bookmark menu-icon"></i>              
+              <i class="mdi mdi-shopping menu-icon"></i>              
               <span class="menu-title">Produk</span>              
             </a>
           </li>	
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" href="keluhan">
               <i class="mdi mdi-library-books menu-icon"></i>              
               <span class="menu-title">Keluhan</span>              
             </a>
-          </li>
+          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="kritik_saran">
               <i class="mdi mdi-email menu-icon"></i>              
@@ -61,7 +61,7 @@
             </a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link" href="galeri">
+            <a class="nav-link" href="vendor">
               <i class="mdi mdi-panorama menu-icon"></i>              
               <span class="menu-title">Vendor</span>              
             </a>

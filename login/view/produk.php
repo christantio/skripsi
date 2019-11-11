@@ -1,8 +1,8 @@
-<title>Merek - <?php echo $web['judul_web']?></title>
+<title>Produk - <?php echo $web['judul_web']?></title>
 <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-              Data Merek
+              Data Produk
             </h3>
           </div>
           <div class="card">
@@ -11,7 +11,7 @@
                 <div class="col-sm-4 col-xs-3">
                 </div>
                 <div class="col-sm-8 col-xs-9 text-right m-b-20">
-                  <a href="#" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#add_modal"><i class="mdi mdi-plus"></i> Tambah Merek</a>
+                  <a href="#" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#add_modal"><i class="mdi mdi-plus"></i> Tambah Produk</a>
                 </div>
               </div><br/>
               <div class="row">
@@ -20,8 +20,12 @@
                     <table id="order-listing" class="table">
                       <thead>
                         <tr>
-                            <th><b>Merek</b></th>
-                            <th><b>Tanggal dibuat</b></th>
+                            <th><b>Nama Produk</b></th>
+                            <th><b>Kategori</b></th>
+                            <th><b>Stock</b></th>
+                            <th><b>Harga</b></th>
+                            <th><b>Keterangan</b></th>
+							<th><b>Tanggal dibuat</b></th>
                             <th><b>Tanggal diubah</b></th>
                             <th><b>Aksi</b></th>
                         </tr>
@@ -36,10 +40,10 @@
         </div>
 
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style="width: 450px;">
+            <div class="modal-dialog modal-lg" role="document" style="width: 650px;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Tambah Merek</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -49,8 +53,73 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1">Merek <span class="text-danger">*</span></label>
-                          <input class="form-control" id="merek" name="merek" placeholder="Merek" type="text" required>
+							<label for="exampleInputName1">Produk <span class="text-danger">*</span></label>
+							<input class="form-control" id="Produk" name="nama_produk" placeholder="Produk" type="text" required>
+							
+						</div>
+					  </div>
+					  <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Kategori <span class="text-danger">*</span></label>
+                          <select class="form-control" id="exampleFormControlSelect1"  name="Kategori" required>
+								  <option value=""></option>
+								  <?php 
+								  $sql = "SELECT  id_kategori,kategori FROM kategori order by id_kategori asc";
+								  $rs  = $db->Execute($sql);
+								  while($list = $rs->FetchRow()){
+									foreach($list as $key=>$val){
+										$key=strtolower($key);
+										$$key=$val;
+									}
+									echo "<option value=".$id_kategori.">$kategori</option>";
+								}
+								  
+								  ?>
+								</select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Stock <span class="text-danger">*</span></label>
+                          <input class="form-control" id="stock" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text" required>
+                        </div>
+                      </div>
+					  <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Harga <span class="text-danger">*</span></label>
+                          <input class="form-control" id="harga" name="harga" onkeydown="return numbersonly(this, event);" placeholder="harga" type="text" required>			
+                        </div>
+                      </div>
+					  <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
+                          <select class="form-control" id="exampleFormControlSelect1"  name="Kategori" required>
+								  <option value=""></option>
+								  <?php 
+								  $sql = "SELECT  id_vendor,nama_vendor FROM vendor order by id_vendor asc";
+								  $rs  = $db->Execute($sql);
+								  while($list = $rs->FetchRow()){
+									foreach($list as $key=>$val){
+										$key=strtolower($key);
+										$$key=$val;
+									}
+									echo "<option value=".$id_vendor.">$nama_vendor</option>";
+								}
+								  
+								  ?>
+								</select>
+                        </div>
+                      </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Keterangan <span class="text-danger">*</span></label>
+                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" required></textarea>
+                        </div>
+                      </div>	  
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Upload File </label><br/>
+                          <input type="file" class="form-control-file" id="gambar" name="gambar"><br/><br/>
                         </div>
                       </div>
                     </div>
@@ -65,10 +134,10 @@
           </div>
 
         <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style="width: 450px;">
+            <div class="modal-dialog modal-lg" role="document" style="width: 650px;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Ubah Merek</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Ubah Produk</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -78,9 +147,73 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1">Merek <span class="text-danger">*</span></label>
-                          <input class="form-control" id="merek_edit" name="merek" placeholder="Merek" type="text" required>
-                          <input id="id_parameter" name="id_parameter" type="hidden" required>
+							<label for="exampleInputName1">Produk <span class="text-danger">*</span></label>
+							<input class="form-control" id="nama_produk" name="nama_produk" placeholder="Produk" type="text" required>
+							<input id="id_parameter" name="id_parameter" type="hidden" required>
+						</div>
+					  </div>
+					  <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Kategori <span class="text-danger">*</span></label>
+                          <select class="form-control" id="kategori1"  name="kategori" required>
+								  <option value=""></option>
+								  <?php 
+								  $sql = "SELECT  id_kategori,kategori FROM kategori order by id_kategori asc";
+								  $rs  = $db->Execute($sql);
+								  while($list = $rs->FetchRow()){
+									foreach($list as $key=>$val){
+										$key=strtolower($key);
+										$$key=$val;
+									}
+									echo "<option value=".$id_kategori.">$kategori</option>";
+								}
+								  
+								  ?>
+								</select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Stock <span class="text-danger">*</span></label>
+                          <input class="form-control" id="stock1" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text" required>
+                        </div>
+                      </div>
+					  <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Harga <span class="text-danger">*</span></label>
+                          <input class="form-control" id="harga1" name="harga" onkeydown="return numbersonly(this, event);" placeholder="harga" type="text" required>			
+                        </div>
+                      </div>
+					  <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
+                          <select class="form-control" id="vendor1"  name="vendor" required>
+								  <option value=""></option>
+								  <?php 
+								  $sql = "SELECT  id_vendor,nama_vendor FROM vendor order by id_vendor asc";
+								  $rs  = $db->Execute($sql);
+								  while($list = $rs->FetchRow()){
+									foreach($list as $key=>$val){
+										$key=strtolower($key);
+										$$key=$val;
+									}
+									echo "<option value=".$id_vendor.">$nama_vendor</option>";
+								}
+								  
+								  ?>
+								</select>
+                        </div>
+                      </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Keterangan <span class="text-danger">*</span></label>
+                          <textarea class="form-control" id="keterangan1" name="keterangan" rows="3" required></textarea>
+                        </div>
+                      </div>	  
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Upload File </label><br/>
+                          <input type="file" class="form-control-file" id="gambar" name="gambar"><br/><br/>
                         </div>
                       </div>
                     </div>
@@ -97,25 +230,31 @@
 
    $("#form_add").on("submit", function (event) {
           event.preventDefault();
-            do_act('form_add','merek/do_add','','Tambah Merek','Anda ingin tambah merek ?','info');
+            do_act('form_add','produk/do_add','','Tambah Produk','Anda ingin tambah Produk ?','info');
           });
 
   $("#form_edit").on("submit", function (event) {
     event.preventDefault();
-      do_act('form_edit','merek/do_update','','Ubah Merek','Anda ingin mengubah merek ?','warning');
+      do_act('form_edit','produk/do_update','','Ubah Produk','Anda ingin mengubah Produk ?','warning');
   });
 
  
 
   function do_edit(id){
     $.ajax({
-          url: '<?php echo $basepath_admin ?>merek/edit/'+id,
+          url: '<?php echo $basepath_admin ?>produk/edit/'+id,
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
             console.log(data);
-              $("#id_parameter").val(data.id_merek);
-              $("#merek_edit").val(data.merek);
+			  
+			  $("#id_parameter").val(data.id_parameter);
+              $("#nama_produk").val(data.nama_produk);
+              $("#stock1").val(data.stock);
+              $("#harga1").val(data.harga);
+              $("#kategori1").val(data.kategori);
+              $("#vendor1").val(data.vendor);
+              $("#keterangan1").val(data.keterangan);
           }
       });
   }
@@ -123,14 +262,14 @@
   
    function do_delete(id){
           swal({
-            title: 'Hapus Merek',
-            text: 'Anda ingin menghapus merek ?',
+            title: 'Hapus Produk',
+            text: 'Anda ingin menghapus Produk ?',
             type: 'error',      // warning,info,success,error
             showCancelButton: true,
             showLoaderOnConfirm: true,
             preConfirm: function(){
               $.ajax({
-                  url: '<?php echo $basepath_admin ?>merek/do_delete',
+                  url: '<?php echo $basepath_admin ?>produk/do_delete',
                   type: 'POST',
                   data: 'id_parameter='+id,
                   success: function(data) {
@@ -177,7 +316,7 @@
           "bJQueryUI": false,
           "responsive": false,
           "autoWidth": false,
-          "sAjaxSource": "<?php echo $basepath_admin ?>merek/list_rest", 
+          "sAjaxSource": "<?php echo $basepath_admin ?>produk/list_rest", 
           "sServerMethod": "POST",
           "scrollX": true,
           // "scrollY": "350px",

@@ -23,9 +23,9 @@
  RewriteRule home/([^/.]+)/?$					home.php?do_act=$1  [L]	 
  RewriteRule home/([^/.]+)/([^/.]+)?$			home.php?do_act=$1&id_parameter=$2  [L]	
 
- RewriteRule kategori/?$    						kategori.php [L]   
- RewriteRule kategori/([^/.]+)/?$					kategori.php?do_act=$1  [L]	 
- RewriteRule kategori/([^/.]+)/([^/.]+)?$			kategori.php?do_act=$1&id_parameter=$2  [L] 
+ RewriteRule kategori/?$    					kategori.php [L]   
+ RewriteRule kategori/([^/.]+)/?$				kategori.php?do_act=$1  [L]	 
+ RewriteRule kategori/([^/.]+)/([^/.]+)?$		kategori.php?do_act=$1&id_parameter=$2  [L] 
 
  RewriteRule produk/?$    						produk.php [L]   
  RewriteRule produk/([^/.]+)/?$					produk.php?do_act=$1  [L]	 
@@ -43,9 +43,9 @@
  RewriteRule slider/([^/.]+)/?$					slider.php?do_act=$1  [L]	 
  RewriteRule slider/([^/.]+)/([^/.]+)?$			slider.php?do_act=$1&id_parameter=$2  [L]	
 
- RewriteRule galeri/?$    						galeri.php [L]   
- RewriteRule galeri/([^/.]+)/?$					galeri.php?do_act=$1  [L]	 
- RewriteRule galeri/([^/.]+)/([^/.]+)?$			galeri.php?do_act=$1&id_parameter=$2  [L]	
+ RewriteRule vendor/?$    						vendor.php [L]   
+ RewriteRule vendor/([^/.]+)/?$					vendor.php?do_act=$1  [L]	 
+ RewriteRule vendor/([^/.]+)/([^/.]+)?$			vendor.php?do_act=$1&id_parameter=$2  [L]	
 
  RewriteRule testimoni/?$    					testimoni.php [L]   
  RewriteRule testimoni/([^/.]+)/?$				testimoni.php?do_act=$1  [L]	 

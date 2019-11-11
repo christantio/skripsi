@@ -153,7 +153,7 @@ class General_Controller {
 
 	//example : upload_file('temporary_file','path_file','file_name')
 	function upload_file($tmp,$path,$file_name) {
-	   copy($tmp,$path.$file_name);
+	   @copy($tmp,$path.$file_name);
 	}
 
 	//example : delete_file('path_file','file_name')

@@ -45,7 +45,7 @@ else if($act=="do_add"){
       $tmp = $_FILES["gambar"]["tmp_name"];
       $foto_asal = $_FILES['gambar']['name'];
       $foto_name = date("ymdhis")."_slider_".$foto_asal;
-      $path      = "../assets/images/slider/";
+      $path      = "../assets/img/slider/";
 
     //Proses
     $insert_data = array();
@@ -83,7 +83,7 @@ else if($act=="do_update"){
          if($foto_asal!=""){
           $tmp       = $_FILES["gambar"]["tmp_name"];
           $foto_name = date("ymdhis")."_slider_".$foto_asal;
-          $path      = "../assets/images/slider/";
+          $path      = "../assets/img/slider/";
         }
 
         //Proses
@@ -125,7 +125,7 @@ else if($act=="do_delete"){
     $where_data['id_slide']  = $gen_controller->decrypt($_POST['id_parameter']);
     
     //Hapus Foto
-    $path      = "../assets/images/slider/";
+    $path      = "../assets/img/slider/";
     $foto_name = $gen_model->GetOne('gambar','slide',$where_data);
     $gen_controller->delete_file($path,$foto_name);
     echo $gen_model->Delete('slide',$where_data);
@@ -172,7 +172,7 @@ else if($act=="list_rest"){
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
 	 	$row = array();
-	 	$row = array($aRow['keterangan'],"<a target='_blank' id='single_image' href='".$basepath."assets/images/slider/".$aRow['gambar']."'><button  class='btn btn-gradient-primary'><i class='mdi mdi-panorama'></i></button></a>",$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['keterangan'],"<a target='_blank' id='single_image' href='".$basepath."assets/img/slider/".$aRow['gambar']."'><button  class='btn btn-gradient-primary'><i class='mdi mdi-panorama'></i></button></a>",$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);

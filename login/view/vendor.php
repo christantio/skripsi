@@ -1,8 +1,8 @@
-<title>Galeri - <?php echo $web['judul_web']?></title>
+<title>Vendor - <?php echo $web['judul_web']?></title>
 <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-              Data Galeri
+              Data Vendor
             </h3>
           </div>
           <div class="card">
@@ -11,7 +11,7 @@
                 <div class="col-sm-4 col-xs-3">
                 </div>
                 <div class="col-sm-8 col-xs-9 text-right m-b-20">
-                  <a href="#" onclick="upload();" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#add_modal"><i class="mdi mdi-plus"></i> Tambah Galeri</a>
+                  <a href="#" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#add_modal"><i class="mdi mdi-plus"></i> Tambah Vendor</a>
                 </div>
               </div><br/>
               <div class="row">
@@ -20,7 +20,7 @@
                     <table id="order-listing" class="table">
                       <thead>
                         <tr>
-                            <th><b>Gambar</b></th>
+                            <th><b>Vendor</b></th>
                             <th><b>Tanggal dibuat</b></th>
                             <th><b>Tanggal diubah</b></th>
                             <th><b>Aksi</b></th>
@@ -36,41 +36,51 @@
         </div>
 
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style="width: 850px;">
+            <div class="modal-dialog modal-lg" role="document" style="width: 450px;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Tambah Vendor</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                   <div class="file-upload-wrapper">
-                    <div id="fileuploader">Upload (Only JPG/JPEG/PNG/GIF)</div>
+                  <form class="forms-sample" id="form_add" method="POST" autocomplete="off">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
+                          <input class="form-control" id="Nama_vendor" name="Nama_vendor" placeholder="Nama vendor" type="text" required>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Tambah</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                  </div>
+                  </form>
                 </div>
              </div>
           </div>
 
         <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style="width: 850px;">
+            <div class="modal-dialog modal-lg" role="document" style="width: 450px;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Ubah Galeri</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Ubah Vendor</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="forms-sample" id="form_edit" method="POST" autocomplete="off" enctype="multipart/form-data">
+                  <form class="forms-sample" id="form_edit" method="POST" autocomplete="off">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1">Gambar <span class="text-danger">*</span></label><br/>
-                          <input name="gambar"  type="file" required><br/><br/>
-                          <input name="id_parameter"  type="hidden" id="id_parameter" >
-                          <center><img style="width:600px" src="#" id="gambar_edit"></center>
+                          <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
+                          <input class="form-control" id="Nama_vendor" name="Nama_vendor" value="<?php echo $Vendor ?>" placeholder="Vendor" type="text" required>
+                          <input id="id_parameter" name="id_parameter" type="hidden" required>
                         </div>
                       </div>
                     </div>
@@ -83,42 +93,44 @@
                 </div>
              </div>
           </div>
-
   <script type="text/javascript">
 
+   $("#form_add").on("submit", function (event) {
+	   event.preventDefault();
+            do_act('form_add','vendor/do_add','','Tambah Vendor','Anda ingin tambah Vendor ?','info');
+          });
 
   $("#form_edit").on("submit", function (event) {
     event.preventDefault();
-      do_act('form_edit','galeri/do_update','','Ubah Galeri','Anda ingin mengubah galeri ?','warning');
+      do_act('form_edit','vendor/do_update','','Ubah Vendor','Anda ingin mengubah Vendor ?','warning');
   });
 
+ 
 
   function do_edit(id){
     $.ajax({
-          url: '<?php echo $basepath_admin ?>galeri/edit/'+id,
+          url: '<?php echo $basepath_admin ?>Vendor/edit/'+id,
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
             console.log(data);
-              $("#id_parameter").val(data.id_galeri);
-              $("#gambar_edit").attr("src",data.gambar);
+              $("#id_parameter").val(data.id_Vendor);
+              $("#Vendor_edit").val(data.Vendor);
           }
       });
   }
 
-
-
   
    function do_delete(id){
           swal({
-            title: 'Hapus Galeri',
-            text: 'Anda ingin menghapus galeri ? ',
+            title: 'Hapus Vendor',
+            text: 'Anda ingin menghapus Vendor ?',
             type: 'error',      // warning,info,success,error
             showCancelButton: true,
             showLoaderOnConfirm: true,
             preConfirm: function(){
               $.ajax({
-                  url: '<?php echo $basepath_admin ?>galeri/do_delete',
+                  url: '<?php echo $basepath_admin ?>vendor/do_delete',
                   type: 'POST',
                   data: 'id_parameter='+id,
                   success: function(data) {
@@ -165,7 +177,7 @@
           "bJQueryUI": false,
           "responsive": false,
           "autoWidth": false,
-          "sAjaxSource": "<?php echo $basepath_admin ?>galeri/list_rest", 
+          "sAjaxSource": "<?php echo $basepath_admin ?>vendor/list_rest", 
           "sServerMethod": "POST",
           "scrollX": true,
           // "scrollY": "350px",
@@ -179,25 +191,4 @@
           ]
       });
 });
-
-(function($) {
-  'use strict';
-  if ($("#fileuploader").length) {
-    $("#fileuploader").uploadFile({
-      add: function (e, data) {
-          var fileType = data.files[0].name.split('.').pop(), allowdtypes = 'jpeg,jpg,png,gif';
-          if (allowdtypes.indexOf(fileType) < 0) {
-              alert('Invalid file type, aborted');
-              return false;
-          }
-      },
-      url: "<?php echo $basepath_admin ?>galeri/do_add",
-      fileName: "myfile"
-    });
-  }
-})(jQuery);
-
-function upload(){
-  $(".ajax-file-upload-container").html("");
-}
 </script>

@@ -60,8 +60,18 @@
                           <label for="exampleInputName1">Kategori <span class="text-danger">*</span></label>
                           <select class="form-control" id="Kategori" name="kategori" required>
                               <option value="">Pilih Kategori</option>
-                              <option value="Perawatan">Perawatan</option>
-                              <option value="Kerusakan">Kerusakan</option>
+								  <?php 
+								  $sql = "SELECT  id_kategori,kategori FROM kategori order by id_kategori asc";
+								  $rs  = $db->Execute($sql);
+								  while($list = $rs->FetchRow()){
+									foreach($list as $key=>$val){
+										$key=strtolower($key);
+										$$key=$val;
+									}
+									echo "<option value=".$id_kategori.">$kategori</option>";
+								}
+								  
+								  ?>
                           </select>
                         </div>
                       </div>
@@ -106,8 +116,18 @@
                           <label for="exampleInputName1">Kategori <span class="text-danger">*</span></label>
                           <select class="form-control" id="kategori_edit" name="kategori" required>
                               <option value="">Pilih Kategori</option>
-                              <option value="Perawatan">Perawatan</option>
-                              <option value="Kerusakan">Kerusakan</option>
+								  <?php 
+								  $sql = "SELECT  id_kategori,kategori FROM kategori order by id_kategori asc";
+								  $rs  = $db->Execute($sql);
+								  while($list = $rs->FetchRow()){
+									foreach($list as $key=>$val){
+										$key=strtolower($key);
+										$$key=$val;
+									}
+									echo "<option value=".$id_kategori.">$kategori</option>";
+								}
+								  
+								  ?>
                           </select>
                         </div>
                       </div>
