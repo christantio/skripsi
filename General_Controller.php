@@ -288,6 +288,12 @@ class General_Controller {
 			}
 			return $sWhere;
 	}
+	
+	function ribuan($angka){
+		if(empty($angka)) $angka=0;
+		$angka = number_format($angka,"0",",",".");
+		return $angka;
+	}
 	//End Property DataTables ServerSide
 
 }

@@ -95,7 +95,8 @@
         contentType: false,
         success: function(data) {
           var data_trim = $.trim(data);
-          if(data_trim=="OK"){
+          console.log(data_trim);
+		  if(data_trim=="OK"){
             swal({
               title: 'Success',
               type: 'success',

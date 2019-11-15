@@ -25,6 +25,7 @@
                             <th><b>Stock</b></th>
                             <th><b>Harga</b></th>
                             <th><b>Keterangan</b></th>
+                            <th><b>Gambar</b></th>
 							<th><b>Tanggal dibuat</b></th>
                             <th><b>Tanggal diubah</b></th>
                             <th><b>Aksi</b></th>
@@ -93,7 +94,7 @@
 					  <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
-                          <select class="form-control" id="exampleFormControlSelect1"  name="Kategori" required>
+                          <select class="form-control" id="vendor"  name="vendor" required>
 								  <option value=""></option>
 								  <?php 
 								  $sql = "SELECT  id_vendor,nama_vendor FROM vendor order by id_vendor asc";
@@ -214,6 +215,7 @@
                         <div class="form-group">
                           <label for="exampleInputName1">Upload File </label><br/>
                           <input type="file" class="form-control-file" id="gambar" name="gambar"><br/><br/>
+                          <center><img style="width:600px" src="#" id="gambar_edit"></center>
                         </div>
                       </div>
                     </div>
@@ -255,6 +257,7 @@
               $("#kategori1").val(data.kategori);
               $("#vendor1").val(data.vendor);
               $("#keterangan1").val(data.keterangan);
+			  $("#gambar_edit").attr("src",data.gambar);
           }
       });
   }

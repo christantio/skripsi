@@ -73,7 +73,8 @@ else if($act=="edit" and $id_parameter!=""){
                   $key=strtolower($key);
                   $$key=$val;
     }
-    $data = array('id_slider'=>$gen_controller->encrypt($id_slide),'gambar'=>$basepath."assets/images/slider/".$gambar,'keterangan'=>$keterangan);
+	
+    $data = array('id_slider'=>$gen_controller->encrypt($id_slide),'gambar'=>$basepath."assets/img/slider/".$gambar,'keterangan'=>$keterangan);
     echo json_encode($data); 
 }
 else if($act=="do_update"){

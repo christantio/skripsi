@@ -51,7 +51,7 @@ else if($act=="do_add"){
     $insert_data['nama_produk']           = addslashes($_POST['nama_produk']);
     $insert_data['Kategori']           	  = addslashes($_POST['Kategori']);
     $insert_data['stock']           	  = addslashes($_POST['stock']);
-    $insert_data['harga']           	  = addslashes($_POST['harga']);
+    $insert_data['harga']           	  = str_replace(".","",addslashes($_POST['harga']));
     $insert_data['keterangan']            = addslashes($_POST['keterangan']);
     $insert_data['vendor']	              = addslashes($_POST['vendor']);
     $insert_data['gambar']	              = $foto_name;
@@ -78,7 +78,7 @@ else if($act=="edit" and $id_parameter!=""){
 	  $key=strtolower($key);
 	  $$key=$val;
     }
-    $data = array('id_parameter'=>$id_parameter,'nama_produk'=>$nama_produk,'stock'=>$stock,'harga'=>$harga,'kategori'=>$kategori,'vendor'=>$vendor,'keterangan'=>$keterangan);
+    $data = array('id_parameter'=>$id_parameter,'nama_produk'=>$nama_produk,'stock'=>$stock,'harga'=>$harga,'kategori'=>$kategori,'vendor'=>$vendor,'keterangan'=>$keterangan,'gambar'=>$basepath."assets/img/produk/".$gambar);
     echo json_encode($data); 
 }
 else if($act=="do_update"){
@@ -168,7 +168,7 @@ else if($act=="list_rest"){
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
 	 	$row = array();
-	 	$row = array($aRow['Nama_Produk'],$aRow['nm_kategori'],$aRow['Stock'],$aRow['Harga'],$aRow['Keterangan'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['Nama_Produk'],$aRow['nm_kategori'],$aRow['Stock'],$aRow['Harga'],$aRow['Keterangan'],"<a target='_blank' id='single_image' href='".$basepath."assets/img/produk/".$aRow['gambar']."'><button  class='btn btn-gradient-primary'><i class='mdi mdi-panorama'></i></button></a>",$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);
