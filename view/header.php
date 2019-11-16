@@ -165,7 +165,7 @@
                 <ul class="dropdown-menu">                
                   <li><a href="product_travel">Travel</a></li>
                   <li><a href="product_furniture">Electronic & Furniture</a></li>
-                  <li><a href="product_kurban">Hewan Kurban </a></li>
+                  <li><a href="product_kurban">Ibadah</a></li>
                   </li>
                 </ul>
               </li>

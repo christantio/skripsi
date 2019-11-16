@@ -31,7 +31,7 @@
                             <th><b>Email</b></th>
                             <th><b>Unit</b></th>
                             <th><b>Biaya</b></th>
-                            <th><b>Jadwal Service</b></th>
+                            <th><b>Jadwal Pembayaran</b></th>
                             <th><b>Tanggal dibuat</b></th>
                             <th><b>Aksi</b></th>
                         </tr>

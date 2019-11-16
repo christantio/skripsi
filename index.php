@@ -7,11 +7,11 @@ $gen_controller  = new General_Controller();
 include "model/General_Model.php";
 $gen_model      = new General_Model();
 
-//Check Session
+/* //Check Session
 session_start();
 if(!empty($_SESSION['username'])){
-  $gen_controller->redirect('member');
-}
+  $gen_controller->redirect('');
+} */
 
 $web = $gen_model->GetOneRow('web');
 

@@ -73,7 +73,7 @@
 										$$key=$val;
 									}
 									echo "<option value=".$id_kategori.">$kategori</option>";
-								}
+								  }
 								  
 								  ?>
 								</select>
