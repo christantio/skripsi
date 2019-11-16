@@ -27,8 +27,7 @@ if($act=="" or $act==null) {
 	include "view/header.php";
 	include "view/checkout.php";
 	include "view/footer.php";
-}
-else if($act=="do_add"){
+}else if($act=="do_add"){
 	$insert_data = array();
     $insert_data['nama']            	= addslashes($_POST['nama']);
     $insert_data['email']               = addslashes($_POST['email']);

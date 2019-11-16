@@ -53,7 +53,7 @@
                  <ul class="nav nav-tabs aa-products-tab">
                     <li class="active"><a href="#men" data-toggle="tab">Travel</a></li>
                     <li><a href="#elektronik" data-toggle="tab">Electronics & Furniture</a></li>
-                    <li><a href="#hewan" data-toggle="tab">Hewan Kurban</a></li>
+                    <li><a href="#hewan" data-toggle="tab">Ibadah</a></li>
                    <!-- <li><a href="#electronics" data-toggle="tab">Electronics</a></li> -->
                   </ul>
                   <!-- Tab panes -->

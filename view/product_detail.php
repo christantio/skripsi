@@ -57,7 +57,7 @@
                       </p>
                     </div>-->
                     <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="checkout?act=view&id_parameter=<?php echo $id_produk; ?>">Mulai Nabung</a>
+                      <a class="aa-add-to-cart-btn" href="product_detail?act=do_add&id_parameter=<?php echo $id_produk; ?>">Mulai Nabung</a>
                     </div>
                   </div>
                 </div>
