@@ -32,7 +32,7 @@ if ($act=="do_add"){
 	$qry = "INSERT INTO pesanan_detail (no_pesanan,id_produk,email) Values ('".$no_pesanan."','".$id_parameter."','cristantio123@gmail.com')";
 	$result=$db->execute($qry);
 	
-	
+	$gen_controller->redirect('checkout');
 }else {
 	
 $web = $gen_model->GetOneRow('produk',array('Id_Produk'=>$id_parameter));
