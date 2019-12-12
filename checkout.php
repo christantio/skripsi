@@ -20,6 +20,12 @@ $md_user      = new user();
 //Check Session
 session_start();
 
+if(!empty($_SESSION['email'])){
+	$email = $_SESSION['email'];
+}else{
+	$email = "";
+}
+
 $web = $gen_model->GetOneRow('web');
 
 
@@ -47,7 +53,7 @@ if($act=="" or $act==null) {
 		$_POST[$key]=htmlspecialchars($val,ENT_QUOTES);
 	}
 	
-	$sql_delete="delete from pesanan_detail where email='cristantio123@gmail.com' and status ='1'";
+	$sql_delete="delete from pesanan_detail where email='$email' and status ='1'";
 	$delete_berkas=$db->Execute($sql_delete);
 	for ($a=1; $a <= $jumlah_pesanan; $a++) {
 		$no_pesanan="no_pesanan_".$a;
@@ -60,7 +66,7 @@ if($act=="" or $act==null) {
 		$hitung = $$hitung;
 		$total = $$total;
 		
-		$qry = "INSERT INTO pesanan_detail (no_pesanan,id_produk,email,kuantitas,harga_list,status,created_date) Values ('".$no_pesanan."','".$id_produk."','cristantio123@gmail.com','$hitung','$total','1','".$date_now_indo_full."')";
+		$qry = "INSERT INTO pesanan_detail (no_pesanan,id_produk,email,kuantitas,harga_list,status,created_date) Values ('".$no_pesanan."','".$id_produk."','$email','$hitung','$total','1','".$date_now_indo_full."')";
 		$result=$db->execute($qry);
 		
 	}

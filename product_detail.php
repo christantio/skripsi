@@ -13,6 +13,12 @@ $md_user      = new user();
 
 //Check Session
 session_start();
+if(!empty($_SESSION['email'])){
+	$email = $_SESSION['email'];
+}else{
+	$email = "";
+}
+
 
 $act="";
 if(isset($_GET['act'])){
@@ -37,7 +43,7 @@ if ($act=="do_add"){
 	$curYear = date('Y');
 	$no_pesanan = "PSN-".$nomor."";	
 	//$qry = "INSERT INTO pesanan_detail (no_pesanan,id_produk,email,kuantitas,harga_list) Values ('".$no_pesanan."','".$id_parameter."')";
-	$qry = "INSERT INTO pesanan_detail (no_pesanan,id_produk,email,status,created_date) Values ('".$no_pesanan."','".$id_parameter."','cristantio123@gmail.com','1','".$date_now_indo_full."')";
+	$qry = "INSERT INTO pesanan_detail (no_pesanan,id_produk,email,status,created_date) Values ('".$no_pesanan."','".$id_parameter."','$email','1','".$date_now_indo_full."')";
 	$result=$db->execute($qry);
 	
 	$gen_controller->redirect('checkout');

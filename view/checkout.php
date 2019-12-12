@@ -28,7 +28,7 @@
 					</thead>
 					<tbody>
 						<?php 
-						$sql = "select a.no_pesanan,a.id_pesanan_detail,a.id_produk,b.* from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='cristantio123@gmail.com' and status='1'";
+						$sql = "select a.no_pesanan,a.id_pesanan_detail,a.id_produk,b.* from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='$email' and status='1'";
 						$result = $db->execute($sql);
 						$no = 1;
 						while($rl = $result->FetchRow()){
@@ -60,10 +60,9 @@
 							</tr>";
 							$no++;
 						}
-						
-						$count = $db->getOne("select count(1) from pesanan_detail where email='cristantio123@gmail.com' and status='1'");
+						$count = $db->getOne("select count(1) from pesanan_detail where email='$email' and status='1'");
 						echo "<input type='hidden' id=jumlah_pesanan name=jumlah_pesanan value='".$count."'/>";
-						$total_keseluruhan = $db->getOne("select sum(b.harga) from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='cristantio123@gmail.com' and status='1'");
+						$total_keseluruhan = $db->getOne("select sum(b.harga) from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='$email' and status='1'");
 						?>
 					</tbody>
 					<tfoot>

@@ -21,7 +21,7 @@
      <div class="row">
        <div class="col-md-12">
         <div class="checkout-area">
-         <form name=f1 method=post action='pembayaran?act=do_pembayaran'  enctype=\"multipart/form-data\">
+         <form name=f1 method=post action='pembayaran?act=do_add'  enctype=\"multipart/form-data\">
             <div class="row">
               <div class="col-md-8">
                 <div class="checkout-left">
@@ -36,7 +36,7 @@
                       <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                            <?php 
-							   $sql = "select b.* from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='cristantio123@gmail.com' and status='1'";
+							   $sql = "select b.* from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='$email' and status='1'";
 							   $result = $db->execute($sql); 
 							   while($rl = $result->FetchRow()){
 									foreach($rl as $key=>$val){
@@ -94,33 +94,33 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" name="nama" placeholder="Nama*" required>
+                                <input type="text" name="nama" placeholder="Nama" >
                               </div>                             
                             </div>
                           </div>   
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input type="email" name="email" placeholder="Email*" required>
+                                <input type="email" name="email" placeholder="Email" >
                               </div>                             
                             </div>
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input type="tel" name="phone" placeholder="Phone*" required>
+                                <input type="tel" name="phone" placeholder="Phone" >
                               </div>
                             </div>
                           </div> 
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <textarea cols="8" rows="3" name="alamat" required>Alamat*</textarea>
+                                <textarea cols="8" rows="3" name="alamat" >Alamat*</textarea>
                               </div>                             
                             </div>                            
                           </div>   
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Keterangan" name="keterangan" required>
+                                <input type="text" placeholder="Keterangan" name="keterangan" >
                               </div>                             
                             </div>
                           </div>                                    
@@ -143,7 +143,7 @@
                       </thead>
                       <tbody>
                         <?php 
-						$sql = "select a.no_pesanan,a.kuantitas,a.harga_list,b.nama_produk,b.harga from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='cristantio123@gmail.com' and status='1'";
+						$sql = "select a.no_pesanan,a.kuantitas,a.harga_list,b.nama_produk,b.harga from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='$email' and status='1'";
 						$result = $db->execute($sql);
 							$total_keselurahan = 0;
 							while($rl = $result->FetchRow()){
@@ -170,27 +170,27 @@
                   </div>
                   <h4>Payment Method</h4>
                   <div class="aa-payment-method">                    
-                    <label for="cashdelivery"><input type="radio" id="cashdelivery" name="optionsRadios" value = "1" onChange='radio(this.value);'> Dengan Dp </label>
-                    <label><input type="text" id="jml_cicilan1" name="jml_cicilan1" onKeyUp='calculateEndPeriod(this);formatangka(this);' maxlength=16>
-					<input type="hidden" id="jml_pinjaman" name="jml_pinjaman" value="<?php echo $harga; ?>"> 
+                    <label for="cashdelivery"><input type="radio" id="cashdelivery" name="radio1" value = "1" onChange='radio(this.value);'> Dengan Dp </label>
+                    <label><input type="text" id="jml_cicilan1" name="jml_cicilan1" onKeyUp='calculateEndPeriod(this);formatangka(this);' maxlength=16 required>
+					<input type="hidden" id="jml_pinjaman" name="jml_pinjaman" value="<?php echo $total_keselurahan; ?>"> 
 					<input type="hidden" id="sisa_pinjaman" name="sisa_pinjaman" value=""> <br><br>
-					<label><input type='text' name='jml_cicilan_dp' id='jml_cicilan_dp' value='' size='20' class='ratakanan' readOnly> / 
-					<select name="jml_bln_dp" id="jml_bln_dp" onChange='jns_bulan_change(this.value);'>
+					<label><input type='text' name='jml_cicilan_dp' id='jml_cicilan_dp' value='' size='20' class='ratakanan' readOnly required> / 
+					<select name="jml_bln_dp" id="jml_bln_dp" onChange='jns_bulan_change(this.value);' >
 					  <option value=""></option>
 					  <option value="6">6</option>
 					  <option value="12">12</option>
 					</select>
 					</label>
-					<label for="paypal"><input type="radio" id="paypal" name="optionsRadios" value = "2" onChange='radio(this.value);'> Tanpa Dp </label> 
-					<label><input type='text' name='jml_cicilan' id='jml_cicilan' value='' onkeyup='formatangka(this);'  size='20' class='ratakanan' readOnly> / 
-					<select name="jml_bln_tnpa_dp" id="jml_bln_tnpa_dp" onChange='jns_bulan_change1(this.value);'>
+					<label for="paypal"><input type="radio" id="paypal" name="radio1" value = "2" onChange='radio(this.value);'> Tanpa Dp </label> 
+					<label><input type='text' name='jml_cicilan' id='jml_cicilan' value='' onkeyup='formatangka(this);'  size='20' class='ratakanan' readOnly required> / 
+					<select name="jml_bln_tnpa_dp" id="jml_bln_tnpa_dp" onChange='jns_bulan_change1(this.value);' required>
 					  <option value=""></option>
 					  <option value="6">6</option>
 					  <option value="12">12</option>
 					</select>
 					
 					Bulan</label>		
-					<select name="metode_pembayaran" id="metode_pembayaran">
+					<select name="metode_pembayaran" id="metode_pembayaran" required>
 					  <option value=""></option>
 					  <option value="1">BCA                                               </option>
 					  <option value="2">MANDIRI                                           </option>

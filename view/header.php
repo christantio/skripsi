@@ -66,17 +66,15 @@
                   <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>-->
 				  <?php 
-				  
 				  if(!empty($_SESSION['email'])){
 					  $email = $_SESSION['email'];
 					  echo "
-					  <li><a href='account.php'>My Account</a></li>
+					  <li><a href='member?act=dashboard'>My Account</a></li>
 					  <li><a href='member?act=logout' >Keluar</a></li>";
 				  }else{
 					  $email = "";
 					  echo "<li><a href='' data-toggle='modal' data-target='#login-modal'>Masuk</a></li>";
 				  }
-				  
 				  ?>
                   
 				  

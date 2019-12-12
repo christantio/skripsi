@@ -34,6 +34,9 @@ if($act=="" or $act==null) {
     session_destroy();
     echo 'Username / Email / Password Salah';
   }
+}else if($act=="dashboard"){
+  session_start();	
+  $gen_controller->redirect('member_admin/index');
 }
 else if($act=="logout"){
   session_start();	
