@@ -7,7 +7,8 @@
     <!-- Font awesome -->
     <link href="<?php echo $basepath ?>assets/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="<?php echo $basepath ?>assets/css/bootstrap.css" rel="stylesheet">   
+    <link href="<?php echo $basepath ?>assets/css/bootstrap.css" rel="stylesheet">
+	<script src="<?php echo $basepath ?>assets/js/rupiah.js"></script>	
     <!-- SmartMenus jQuery Bootstrap Addon CSS -->
     <link href="<?php echo $basepath ?>assets/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
     <!-- Product view slider -->
@@ -23,7 +24,11 @@
     <link href="<?php echo $basepath ?>assets/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
 	<!-- logo tab --> 
 	<link rel="shortcut icon" href="<?php echo $basepath ?>assets/img/logo.jpg">
-	
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="<?php echo $basepath_admin ?>assets/plugin/iconfonts/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="<?php echo $basepath_admin ?>assets/plugin/css/vendor.bundle.base.css">
+	<link rel="stylesheet" href="<?php echo $basepath_admin ?>assets/plugin/css/vendor.bundle.addons.css">	
+	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/js/sweetalert2/dist/sweetalert2.min.css">
     <!-- Main style sheet -->
     <link href="<?php echo $basepath ?>assets/css/style.css" rel="stylesheet">    
 
@@ -56,11 +61,24 @@
             <div class="aa-header-top-area">
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                 <!-- <li><a href="account.php">My Account</a></li>
+                 <!-- 
                   <li class="hidden-xs"><a href="wishlist.php">Wishlist</a></li>
                   <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>-->
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+				  <?php 
+				  
+				  if(!empty($_SESSION['email'])){
+					  $email = $_SESSION['email'];
+					  echo "
+					  <li><a href='account.php'>My Account</a></li>
+					  <li><a href='member?act=logout' >Keluar</a></li>";
+				  }else{
+					  $email = "";
+					  echo "<li><a href='' data-toggle='modal' data-target='#login-modal'>Masuk</a></li>";
+				  }
+				  
+				  ?>
+                  
 				  
                 </ul>
               </div>
@@ -92,35 +110,45 @@
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
-                  <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">2</span>
+                  <span class="aa-cart-title">Keranjang Belanja</span>
+                  <span class="aa-cart-notify"> 
+				  <?php 
+						$count_pemesanan = $db->getOne("select count(1) from pesanan_detail where email='$email' and status='1'");
+						echo $count_pemesanan;
+				  ?> 
+				  </span>
                 </a>
                 <div class="aa-cartbox-summary">
                   <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="<?php echo $basepath ?>assets/img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="<?php echo $basepath ?>assets/img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>                    
-                    <li>
-                      <span class="aa-cartbox-total-title">
-                        Total
-                      </span>
-                      <span class="aa-cartbox-total-price">
-                        $500
-                      </span>
-                    </li>
+					<?php 
+						$sql = "select a.kuantitas,a.harga_list,b.* from pesanan_detail a left join produk b on a.id_produk = b.Id_Produk where email='".$email."' and status='1'";
+						$result = $db->execute($sql);
+						$total_harga =0;
+						while($rl = $result->FetchRow()){
+							foreach($rl as $key=>$val){
+								$key=strtolower($key);
+								$$key=$val;
+							}
+							echo"<li>
+								  <a class='aa-cartbox-img' href='#'><img src='".$basepath."assets/img/produk/$gambar' alt='img'></a>
+								  <div class='aa-cartbox-info'>
+									<h4><a href='#'>$nama_produk</a></h4>
+									<p>$kuantitas x ".$gen_controller->ribuan($harga)."</p>
+								  </div>
+								  <a class='aa-remove-product' href='#'><span class='fa fa-times'></span></a>
+								</li>                    
+								";
+							$total_harga +=$harga_list;
+						}		
+					?>
+					<li>
+								  <span class='aa-cartbox-total-title'>
+									Total
+								  </span>
+								  <span class='aa-cartbox-total-price'>
+									<?php echo $gen_controller->ribuan($total_harga); ?>
+								  </span>
+								</li>
                   </ul>
                   <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.php">Checkout</a>
                 </div>

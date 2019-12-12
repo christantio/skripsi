@@ -4,7 +4,7 @@ class produk {
 		  global $db;
 		  $sql = "SELECT  pdk.*,b.kategori as nm_kategori FROM produk as pdk 
 				  left join kategori as b on pdk.kategori = b.id_kategori 
-					".$where."  ".$order.$limit;	
+					".$where."  ".$order.$limit;
 		  $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	

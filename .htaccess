@@ -15,11 +15,15 @@
  RewriteRule index.jsp$    						index.php [L] 
  RewriteRule index.asp$    						index.php [L] 
  RewriteRule index.css$    						index.php [L] 
-
+ 
  RewriteRule profil/?$    						profil.php [L]   
  RewriteRule profil/([^/.]+)/?$					profil.php?do_act=$1  [L]	 
  RewriteRule profil/([^/.]+)/([^/.]+)?$			profil.php?do_act=$1&id_parameter=$2  [L]	
 
+ RewriteRule home/?$    						index.php [L]   
+ RewriteRule home/([^/.]+)/?$					index.php?do_act=$1  [L]	 
+ RewriteRule home/([^/.]+)/([^/.]+)?$			index.php?do_act=$1&id_parameter=$2  [L]
+ 
  RewriteRule product_travel/?$    				product_travel.php [L]   
  RewriteRule product_travel/([^/.]+)/?$			product_travel.php?do_act=$1  [L]	 
  RewriteRule product_travel/([^/.]+)/([^/.]+)?$	product_travel.php?do_act=$1&id_parameter=$2  [L]	
@@ -54,7 +58,11 @@
 
  RewriteRule checkout/?$    						checkout.php [L]   
  RewriteRule checkout/([^/.]+)/?$					checkout.php?do_act=$1  [L]	 
- RewriteRule checkout/([^/.]+)/([^/.]+)?$			checkout.php?do_act=$1&id_parameter=$2  [L] 
+ RewriteRule checkout/([^/.]+)/([^/.]+)?$			checkout.php?do_act=$1&id_parameter=$2  [L]
+
+ RewriteRule pembayaran/?$    						pembayaran.php [L]   
+ RewriteRule pembayaran/([^/.]+)/?$					pembayaran.php?do_act=$1  [L]	 
+ RewriteRule pembayaran/([^/.]+)/([^/.]+)?$			pembayaran.php?do_act=$1&id_parameter=$2  [L] 
 
  RewriteRule member/?$    						member.php [L]   
  RewriteRule member/([^/.]+)/?$					member.php?id_parameter=$1  [L]

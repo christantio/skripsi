@@ -7,7 +7,7 @@ class user {
 							email = '".$username."'
 							OR username = '".$username."'
 						)
-					AND password = '".$pwd."'";
+					AND password = '".$pwd."'";	
 	      $result=$db->getRow($sql);
 			if (!$result){
 				return "NOK : ".$db->ErrorMsg();

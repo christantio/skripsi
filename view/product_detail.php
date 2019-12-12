@@ -23,9 +23,43 @@
                     <h3><?php echo $nama_produk; ?></h3>
                     <div class="aa-price-block">
                       <span class="aa-product-view-price">Rp. <?php echo $ribuan = $gen_controller->ribuan($harga); ?> </span>
-                      <p class="aa-product-avilability">Sisa Stock: <span><?php echo $stock; ?></span></p>
+                      <p class="aa-product-avilability">
+					  <?php
+							if ($bulan == "1"){
+								$bulan = "Januari";
+							}else if ($bulan == "2"){
+								$bulan = "Februari";
+							}else if ($bulan == "3"){
+								$bulan = "Maret";
+							}else if ($bulan == "4"){
+								$bulan = "April";
+							}else if ($bulan == "5"){
+								$bulan = "Mei";
+							}else if ($bulan == "6"){
+								$bulan = "Juni";
+							}else if ($bulan == "7"){
+								$bulan = "Juli";
+							}else if ($bulan == "8"){
+								$bulan = "Agustus";
+							}else if ($bulan == "9"){
+								$bulan = "September";
+							}else if ($bulan == "10"){
+								$bulan = "Oktober";
+							}else if ($bulan == "11"){
+								$bulan = "November";
+							}else if ($bulan == "12"){
+								$bulan = "Desember";
+							}
+							if ($kategori == "1"){
+								echo "Periode Hotel <span> $bulan $tahun </span>";	
+							}else{
+								echo "Sisa Stock: <span> echo $stock; </span>";
+							}
+							
+					  ?>
+					  </p>
                     </div>
-                    <p><?php echo $keterangan; ?></p>
+                    <p><?php echo substr($keterangan,0,100); ?></p>
                     <!--<h4>Size</h4>
                     <div class="aa-prod-view-size">
                       <a href="#">S</a>

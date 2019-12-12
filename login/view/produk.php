@@ -62,8 +62,8 @@
 					  <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleFormControlSelect1">Kategori <span class="text-danger">*</span></label>
-                          <select class="form-control" id="exampleFormControlSelect1"  name="Kategori" required>
-								  <option value=""></option>
+                          <select class="form-control" id="exampleFormControlSelect1"  name="Kategori" onChange=hide(this.value); required>
+							<option value=""></option>
 								  <?php 
 								  $sql = "SELECT  id_kategori,kategori FROM kategori order by id_kategori asc";
 								  $rs  = $db->Execute($sql);
@@ -76,15 +76,48 @@
 								  }
 								  
 								  ?>
-								</select>
+							</select>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div id="stock1" class="col-md-6">
                         <div class="form-group">
                           <label for="exampleInputName1">Stock <span class="text-danger">*</span></label>
                           <input class="form-control" id="stock" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text" required>
                         </div>
                       </div>
+					  <div id="tahun1" class="col-md-6" style="display:none">
+					  <div class="form-group">
+                        <label for="exampleInputName1">Tahun <span class="text-danger">*</span></label>
+                         <table width=100% border=0px>
+						 <tr>
+						 <td> 
+							<select class="form-control" style="width:120px!important" id="vendor"  name="vendor" required>
+								  <option value=""></option>
+								  <?php 
+								  for ($i=2019;$i<=2030;$i++){
+									echo "<option value=".$i.">$i</option>";
+									  
+								  }
+								  
+								  ?>
+							</select>
+						 </td>
+						 <td>  
+						 <select class="form-control" style="width:120px!important" id="vendor"  name="vendor" required>
+								  <option value=""></option>
+								  <?php 
+								  $arr_periode = array(1=>"Januari",2=>"Februari",3=>"Maret",4=>"April",5=>"Mei",6=>"Juni",7=>"Juli",8=>"Agustus",9=>"September",10=>"Oktober",11=>"November",12=>"Desember");
+								  foreach($arr_periode as $value=>$text){
+										echo "<option value=\"$value\">$text</option>";
+								}
+								  
+								  ?>
+						 </select>
+						 </td>
+						 </tr>
+						 </table>
+                      </div>
+					  </div>
 					  <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleInputName1">Harga <span class="text-danger">*</span></label>
@@ -156,7 +189,7 @@
 					  <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleFormControlSelect1">Kategori <span class="text-danger">*</span></label>
-                          <select class="form-control" id="kategori1"  name="kategori" required>
+                          <select class="form-control" id="kategori1"  name="kategori" onChange=hide2(this.value); required>
 								  <option value=""></option>
 								  <?php 
 								  $sql = "SELECT  id_kategori,kategori FROM kategori order by id_kategori asc";
@@ -173,12 +206,45 @@
 								</select>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" id="stock2">
                         <div class="form-group">
                           <label for="exampleInputName1">Stock <span class="text-danger">*</span></label>
-                          <input class="form-control" id="stock1" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text" required>
+                          <input class="form-control" id="stock3" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text" required>
                         </div>
                       </div>
+					  <div id="tahun2" class="col-md-6" style="display:none">
+					  <div class="form-group">
+                        <label for="exampleInputName1">Tahun <span class="text-danger">*</span></label>
+                         <table width=100% border=0px>
+						 <tr>
+						 <td> 
+							<select class="form-control" style="width:120px!important" id="tahun"  name="tahun" required>
+								  <option value=""></option>
+								  <?php 
+								  for ($i=2019;$i<=2030;$i++){
+									echo "<option value=".$i.">$i</option>";
+									  
+								  }
+								  
+								  ?>
+							</select>
+						 </td>
+						 <td>  
+						 <select class="form-control" style="width:120px!important" id="bulan"  name="bulan" required>
+								  <option value=""></option>
+								  <?php 
+								  $arr_periode = array(1=>"Januari",2=>"Februari",3=>"Maret",4=>"April",5=>"Mei",6=>"Juni",7=>"Juli",8=>"Agustus",9=>"September",10=>"Oktober",11=>"November",12=>"Desember");
+								  foreach($arr_periode as $value=>$text){
+										echo "<option value=\"$value\">$text</option>";
+								}
+								  
+								  ?>
+						 </select>
+						 </td>
+						 </tr>
+						 </table>
+                      </div>
+					  </div>
 					  <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleInputName1">Harga <span class="text-danger">*</span></label>
@@ -252,7 +318,7 @@
 			  
 			  $("#id_parameter").val(data.id_parameter);
               $("#nama_produk").val(data.nama_produk);
-              $("#stock1").val(data.stock);
+              $("#stock2").val(data.stock);
               $("#harga1").val(data.harga);
               $("#kategori1").val(data.kategori);
               $("#vendor1").val(data.vendor);
@@ -333,4 +399,24 @@
           ]
       });
 });
+
+function hide(value) {
+  if (value == "1"){
+	  document.getElementById('stock1').style.display = 'none';    
+	  document.getElementById('tahun1').style.display = 'block';	  
+  }else{
+	  document.getElementById('stock1').style.display = 'block';
+	   document.getElementById('tahun1').style.display = 'none';
+  }
+}
+
+function hide2(value) {
+  if (value == "1"){
+	  document.getElementById('stock2').style.display = 'none';    
+	  document.getElementById('tahun2').style.display = 'block';	  
+  }else{
+	  document.getElementById('stock2').style.display = 'block';
+	   document.getElementById('tahun2').style.display = 'none';
+  }
+}
 </script>

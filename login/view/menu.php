@@ -23,19 +23,25 @@
               <i class="mdi mdi-shopping menu-icon"></i>              
               <span class="menu-title">Produk</span>              
             </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="bank">
+              <i class="mdi mdi-bank menu-icon"></i>              
+              <span class="menu-title">Bank</span>              
+            </a>
           </li>	
           <!--<li class="nav-item">
             <a class="nav-link" href="keluhan">
               <i class="mdi mdi-library-books menu-icon"></i>              
               <span class="menu-title">Keluhan</span>              
             </a>
-          </li>-->
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="kritik_saran">
               <i class="mdi mdi-email menu-icon"></i>              
               <span class="menu-title">Kritik & Saran</span>              
             </a>
-          </li> 
+          </li>--> 
           <li class="nav-item">
             <a class="nav-link" href="pemesanan">
               <i class="mdi mdi-cart menu-icon"></i>              
@@ -48,13 +54,7 @@
               <span class="menu-title">Testimoni</span>              
             </a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="faq">
-              <i class="mdi mdi-help-circle menu-icon"></i>              
-              <span class="menu-title">FAQ</span>              
-            </a>
-          </li>
-           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="slider">
               <i class="mdi mdi-code-brackets menu-icon"></i>              
               <span class="menu-title">Slider</span>              
@@ -71,6 +71,6 @@
               <i class="mdi mdi-web menu-icon"></i>              
               <span class="menu-title">Website</span>              
             </a>
-          </li>
+         </li> 
         </ul>
       </nav>

@@ -7,9 +7,13 @@ $gen_controller  = new General_Controller();
 include "model/General_Model.php";
 $gen_model      = new General_Model();
 
-/* //Check Session
+//Model User
+include "model/user.php";
+$md_user      = new user();
+
+//Check Session
 session_start();
-if(!empty($_SESSION['username'])){
+/* if(!empty($_SESSION['username'])){
   $gen_controller->redirect('');
 } */
 

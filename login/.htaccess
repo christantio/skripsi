@@ -31,6 +31,10 @@
  RewriteRule produk/([^/.]+)/?$					produk.php?do_act=$1  [L]	 
  RewriteRule produk/([^/.]+)/([^/.]+)?$			produk.php?do_act=$1&id_parameter=$2  [L]
  
+ RewriteRule bank/?$    						bank.php [L]   
+ RewriteRule bank/([^/.]+)/?$					bank.php?do_act=$1  [L]	 
+ RewriteRule bank/([^/.]+)/([^/.]+)?$			bank.php?do_act=$1&id_parameter=$2  [L]
+ 
  RewriteRule keluhan/?$    						keluhan.php [L]   
  RewriteRule keluhan/([^/.]+)/?$				keluhan.php?do_act=$1  [L]	 
  RewriteRule keluhan/([^/.]+)/([^/.]+)?$		keluhan.php?do_act=$1&id_parameter=$2  [L]

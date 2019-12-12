@@ -54,6 +54,8 @@ else if($act=="do_add"){
     $insert_data['harga']           	  = str_replace(".","",addslashes($_POST['harga']));
     $insert_data['keterangan']            = addslashes($_POST['keterangan']);
     $insert_data['vendor']	              = addslashes($_POST['vendor']);
+	$insert_data['tahun']          		  = addslashes($_POST['tahun']);
+	$insert_data['bulan']	              = addslashes($_POST['bulan']);
     $insert_data['gambar']	              = $foto_name;
     $insert_data['created_date']          = $date_now_indo_full;
     $insert_data['last_update']           = $date_now_indo_full;
@@ -94,9 +96,11 @@ else if($act=="do_update"){
 		$update_data['nama_produk']           = addslashes($_POST['nama_produk']);
 		$update_data['kategori']           	  = addslashes($_POST['kategori']);
 		$update_data['stock']           	  = addslashes($_POST['stock']);
-		$update_data['harga']           	  = addslashes($_POST['harga']);
+		$update_data['harga']           	  = str_replace(".","",addslashes($_POST['harga']));
 		$update_data['keterangan']            = addslashes($_POST['keterangan']);
 		$update_data['vendor']	              = addslashes($_POST['vendor']);
+		$update_data['tahun']          		  = addslashes($_POST['tahun']);
+		$update_data['bulan']	              = addslashes($_POST['bulan']);
 		$update_data['gambar']	              = $foto_name;
 		$update_data['created_date']          = $date_now_indo_full;
 		$update_data['last_update']           = $date_now_indo_full;
@@ -131,7 +135,7 @@ else if($act=="do_delete"){
   }
 }
 else if($act=="list_rest"){
-  $aColumns = array('pdk.Nama_Produk','pdk.created_date','pdk.last_update','pdk.Id_Produk'); //Kolom Pada Tabel
+  $aColumns = array('pdk.Nama_Produk','pdk.created_date','pdk.last_update','pdk.Id_Produk','pdk.tahun','pdk.bulan','pdk.stock'); //Kolom Pada Tabel
 
   	// Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;

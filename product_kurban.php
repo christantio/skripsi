@@ -7,6 +7,12 @@ $gen_controller  = new General_Controller();
 include "model/General_Model.php";
 $gen_model      = new General_Model();
 
+//Model User
+include "model/user.php";
+$md_user      = new user();
+
+//Check Session
+session_start();
 
 $web = $gen_model->GetOneRow('web');
 

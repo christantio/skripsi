@@ -97,7 +97,7 @@
             <label for="">Email<span>*</span></label>
             <input type="text" name=email placeholder="Email">
             <label for="">Password<span>*</span></label>
-            <input type="password" password=password placeholder="Password">
+            <input type="password" name=password placeholder="Password">
             <button class="aa-browse-btn" type="submit">Masuk</button>
             <p class="aa-lost-password"><a href="#">Lupa Password</a></p>
             <div class="aa-register-now">
@@ -108,10 +108,24 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="<?php echo $basepath_admin ?>assets/plugin/js/vendor.bundle.base.js"></script>
+  <script src="<?php echo $basepath_admin ?>assets/plugin/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="<?php echo $basepath_admin ?>assets/js/off-canvas.js"></script>
+  <script src="<?php echo $basepath_admin ?>assets/js/hoverable-collapse.js"></script>
+  <script src="<?php echo $basepath_admin ?>assets/js/misc.js"></script>
+  <script src="<?php echo $basepath_admin ?>assets/js/settings.js"></script>
+  <script src="<?php echo $basepath_admin ?>assets/js/todolist.js"></script>
+  <!-- endinject -->
+
+  <script type="text/javascript" src="<?php echo $basepath ?>assets/js/sweetalert2/dist/sweetalert2.min.js"></script>
   
   <script type="text/javascript">
      $("#f1").on("submit", function (event) {
-        event.preventDefault();
+		event.preventDefault();
         do_proses('f1','member','index');
       });
     function do_proses(form_id,act_controller,after_controller){
@@ -123,7 +137,6 @@
         contentType: false,
         success: function(data) {
           var data_trim = $.trim(data);
-          console.log(data_trim);
 		  if(data_trim=="OK"){
             swal({
               title: 'Success',
