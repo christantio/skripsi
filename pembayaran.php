@@ -25,12 +25,12 @@ if($act=="do_add"){
 	$insert_data = array();
     $insert_data['nama']            	= addslashes($_POST['nama']);
     $insert_data['email']               = addslashes($_POST['email']);
-    $insert_data['no_hp']               = addslashes($_POST['contact']);
-    $insert_data['pesan']               = addslashes($_POST['pesan']);
-    $insert_data['created_date']        = $date_now_indo_full;
+    $insert_data['phone']               = addslashes($_POST['phone']);
+    $insert_data['alamat']              = addslashes($_POST['alamat']);
+    $insert_data['keterangan']          = addslashes($_POST['keterangan']);
 
     if($insert_data['nama']!=""){
-        echo $gen_model->Insert('kritik_saran',$insert_data);
+        echo $gen_model->Insert('anggota_lain',$insert_data);
     }
     else {
         echo 'Terjadi kesalahan';
