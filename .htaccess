@@ -24,6 +24,10 @@
  RewriteRule home/([^/.]+)/?$					index.php?do_act=$1  [L]	 
  RewriteRule home/([^/.]+)/([^/.]+)?$			index.php?do_act=$1&id_parameter=$2  [L]
  
+ RewriteRule product/?$    					product.php [L]   
+ RewriteRule product/([^/.]+)/?$			product.php?do_act=$1  [L]	 
+ RewriteRule product/([^/.]+)/([^/.]+)?$	product.php?do_act=$1&id_parameter=$2  [L]
+
  RewriteRule product_travel/?$    				product_travel.php [L]   
  RewriteRule product_travel/([^/.]+)/?$			product_travel.php?do_act=$1  [L]	 
  RewriteRule product_travel/([^/.]+)/([^/.]+)?$	product_travel.php?do_act=$1&id_parameter=$2  [L]	

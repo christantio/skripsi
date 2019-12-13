@@ -32,7 +32,7 @@
                           <i class="mdi mdi-cart mdi-24px"></i>
                         </div>
                         <div>
-              <?php $count_pending = $gen_model->GetOne('count(*)','pesanan',array('status'=>'Pending')); ?>
+              <?php $count_pending = $gen_model->GetOne('count(*)','pesanan_detail',array('status'=>'1')); ?>
                           <h3><?php echo  (empty($count_pending) ? '0' : $count_pending) ?></h3>
                           <p class="mb-0">Pemesanan Pending</p>
                         </div>
@@ -48,7 +48,7 @@
                           <i class="mdi mdi-cart mdi-24px"></i>
                         </div>
                         <div>
-             <?php $count_cancel = $gen_model->GetOne('count(*)','pesanan',array('status'=>'Cancel')); ?>
+             <?php $count_cancel = $gen_model->GetOne('count(*)','pesanan',array('status'=>'3')); ?>
                           <h3><?php echo  (empty($count_cancel) ? '0' : $count_cancel) ?></h3>
                           <p class="mb-0">Pemesanan Cancel</p>
                         </div>
@@ -64,7 +64,7 @@
                           <i class="mdi mdi-cart mdi-24px"></i>
                         </div>
                         <div>
-             <?php $count_sukses = $gen_model->GetOne('count(*)','pesanan',array('status'=>'Sukses')); ?>
+             <?php $count_sukses = $gen_model->GetOne('count(*)','pesanan',array('status'=>'2')); ?>
                           <h3><?php echo  (empty($count_sukses) ? '0' : $count_sukses) ?></h3>
                           <p class="mb-0">Pemesanan Sukses</p>
                         </div>
@@ -91,14 +91,11 @@
                             <thead>
                               <tr>
                                   <th><b>No. Pesanan</b></th>
-                                  <th><b>Tipe</b></th>
                                   <th><b>Status</b></th>
                                   <th><b>Nama</b></th>
-                                  <th><b>No Tlp</b></th>
                                   <th><b>Email</b></th>
-                                  <th><b>Unit</b></th>
+                                  <th><b>Kuantitas</b></th>
                                   <th><b>Biaya</b></th>
-                                  <th><b>Jadwal Service</b></th>
                                   <th><b>Tanggal dibuat</b></th>
                                   <th><b>Aksi</b></th>
                               </tr>
@@ -216,14 +213,8 @@
 
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputName1"><b>Total Biayaasdfsafsfs</b></label>
+                        <label for="exampleInputName1"><b>Total Biaya</b></label>
                         <br><span id="biaya"></span>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="exampleInputName1"><b>Jadwal Service</b></label>
-                        <br><span id="jadwal"></span>
                       </div>
                     </div>
                     <div class="col-md-12">

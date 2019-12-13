@@ -38,41 +38,8 @@ if($act=="" or $act==null) {
   include "view/footer.php";
 }
 else if($act=="detail" and $id_parameter!=""){
-    $detail = $gen_model->GetWhere('pesanan_detail',array('no_pesanan'=>$id_parameter));
+    $detail = $gen_model->GetWhere('pesanan',array('no_pesanan'=>$id_parameter));
 	$i=1;
-	 while($list = $detail->FetchRow()){
-		 foreach($list as $key=>$val){
-              $key=strtolower($key);
-              $$key=$val;
-   		  } 
-   		  $merek = $gen_model->GetOne('merek','merek',array('id_merek'=>$id_merek));?>	
-
-   		  <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputName1"><b>Merek & Ukuran PK AC <?php echo $i ?></b></b></label>
-              <br><?php echo $merek ?>, PK : <?php echo $ukuran_ac ?>
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputName1"><b>Keluhan / Masalah AC <?php echo $i ?></b></b></label>
-              <br><?php 
-						$tags = explode(',',$id_keluhan);
-						$rp   = explode(',',$harga_list_keluhan);
-						$iz=0;
-						$izx=1;
-						foreach($tags as $klh_id){
-							echo $izx.". ".$gen_model->GetOne('nama_keluhan','keluhan',array('id_keluhan'=>$klh_id))." - Rp. ".$gen_controller->to_rupiah($rp[$iz])."<br>";
-							$iz++;
-							$izx++;
-						}
-					?>
-            </div>
-          </div>
-   	<?php  
-   		$i++;
-	}
 }
 else if($act=="update_status"){
   if(!empty($_SESSION['user_id'])){ 
@@ -105,10 +72,10 @@ else if($act=="edit" and $id_parameter!=""){
     $count = $gen_model->GetOne('count(*)','pesanan_detail',array('no_pesanan'=>$no_pesanan)); 
 
 	$color ="";
-	if($status=="Pending"){
+	if($status=="1"){
 		$color = "orange";	
 	}
-	else if($status=="Cancel"){
+	else if($status=="3"){
 		$color = "red";
 	}
 	else{
@@ -132,7 +99,7 @@ else if($act=="do_delete"){
   }
 }
 else if($act=="list_rest"){
-  $aColumns = array('ps.no_pesanan','ps.tipe','ps.status','ps.nama','ps.no_tlp','ps.email','ps.id_pesanan as unit','ps.total_biaya','ps.jadwal_service','ps.created_date','ps.id_pesanan'); //Kolom Pada Tabel
+  $aColumns = array('ps.no_pesanan','ps.status','ps.nama','ps.email'); //Kolom Pada Tabel
 
     // Input method (use $_GET, $_POST or $_REQUEST)
   $input =& $_POST;
@@ -174,10 +141,10 @@ else if($act=="list_rest"){
       $count = $gen_model->GetOne('count(*)','pesanan_detail',array('no_pesanan'=>$aRow['no_pesanan'])); 
 
       $color ="";
-      if($aRow['status']=="Pending"){
+      if($aRow['status']=="1"){
         $color = "orange";  
       }
-      else if($aRow['status']=="Cancel"){
+      else if($aRow['status']=="3"){
         $color = "red";
       }
       else{
@@ -185,7 +152,7 @@ else if($act=="list_rest"){
       }
       $status = "<span style='color:".$color."'>".$aRow['status']."</span>";
 
-    $row = array($aRow['no_pesanan'],$aRow['tipe'],$status,ucwords(strtolower($aRow['nama'])),$aRow['no_tlp'],ucwords(strtolower($aRow['email'])),"<center>".$count."</center>","Rp. ".$gen_controller->to_rupiah($aRow['total_biaya']),$gen_controller->get_date_indonesia($aRow['jadwal_service'])." ".substr($aRow['jadwal_service'],10,6),$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),"<center>".$edit_delete."</center>");
+    $row = array($aRow['no_pesanan'],$status,ucwords(strtolower($aRow['nama'])),$aRow['no_tlp'],ucwords(strtolower($aRow['email'])),"<center>".$count."</center>","Rp. ".$gen_controller->to_rupiah($aRow['total_biaya']),$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),"<center>".$edit_delete."</center>");
     $output['aaData'][] = $row;
   }
   echo json_encode($output);

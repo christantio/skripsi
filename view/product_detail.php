@@ -53,7 +53,7 @@
 							if ($kategori == "1"){
 								echo "Periode Hotel <span> $bulan $tahun </span>";	
 							}else{
-								echo "Sisa Stock: <span> echo $stock; </span>";
+								echo "Sisa Stock: <span> $stock; </span>";
 							}
 							
 					  ?>

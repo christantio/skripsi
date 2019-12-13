@@ -23,7 +23,7 @@
 						  <div class='seq-title'>
 							<span data-seq>Tabungan</span>                
 							<h2 data-seq>$keterangan</h2>                
-							<a data-seq href='#' class='aa-shop-now-btn aa-secondary-btn'>Nabung Sekarang</a>
+							<a data-seq href='product' class='aa-shop-now-btn aa-secondary-btn'>Nabung Sekarang</a>
 						  </div>
 						</li>";
 					}				  
@@ -107,7 +107,7 @@
 									 <li>
 										  <figure>
 											<a class='aa-product-img' href='#'><img src='".$basepath."assets/img/produk/$gambar' width='100%' height='100%' auto alt='polo shirt img'></a>
-											<a class='aa-add-card-btn' href='#'><span class='fa fa-shopping-cart'></span>Nabung</a>
+											<a class='aa-add-card-btn' href='product_detail?act=view&id_parameter=$id_produk'><span class='fa fa-shopping-cart'></span>Nabung</a>
 											  <figcaption>
 											  <h4 class='aa-product-title'><a href='#'>$nama_produk</a></h4>
 											  <span class='aa-product-price'>$harga</span>
@@ -140,7 +140,7 @@
 									 <li>
 										  <figure>
 											<a class='aa-product-img' href='#'><img src='".$basepath."assets/img/produk/$gambar' width='100%' height='100%' auto alt='polo shirt img'></a>
-											<a class='aa-add-card-btn' href='#'><span class='fa fa-shopping-cart'></span>Nabung</a>
+											<a class='aa-add-card-btn' href='product_detail?act=view&id_parameter=$id_produk'><span class='fa fa-shopping-cart'></span>Nabung</a>
 											  <figcaption>
 											  <h4 class='aa-product-title'><a href='#'>$nama_produk</a></h4>
 											  <span class='aa-product-price'>$harga</span>
@@ -156,7 +156,7 @@
 						?>                        
                       </ul>
                     </div>
-                     <div align=center> <a class="aa-browse-btn" href="product.php">Nabung Selengkapnya</a> </div>
+                     <div align=center> <a class="aa-browse-btn" href="product">Nabung Selengkapnya</a> </div>
                   </div>             
               </div>
             </div>
