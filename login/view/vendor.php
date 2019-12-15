@@ -50,7 +50,7 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
-                          <input class="form-control" id="Nama_vendor" name="Nama_vendor" placeholder="Nama vendor" type="text" required>
+                          <input class="form-control" id="nama_vendor" name="nama_vendor" placeholder="Nama vendor" type="text" required>
                         </div>
                       </div>
                     </div>
@@ -79,8 +79,8 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
-                          <input class="form-control" id="Nama_vendor" name="Nama_vendor" value="<?php echo $Vendor ?>" placeholder="Vendor" type="text" required>
-                          <input id="id_parameter" name="id_parameter" type="hidden" required>
+                          <input class="form-control" id="nama_vendor1" name="nama_vendor" value="" placeholder="Vendor" type="text" required>
+                          <input id="id_parameter" name="id_parameter" type="text" required>
                         </div>
                       </div>
                     </div>
@@ -109,13 +109,13 @@
 
   function do_edit(id){
     $.ajax({
-          url: '<?php echo $basepath_admin ?>Vendor/edit/'+id,
+          url: '<?php echo $basepath_admin ?>vendor/edit/'+id,
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
             console.log(data);
-              $("#id_parameter").val(data.id_Vendor);
-              $("#Vendor_edit").val(data.Vendor);
+              $("#id_parameter").val(data.id_vendor);
+              $("#nama_vendor1").val(data.Nama_vendor);
           }
       });
   }

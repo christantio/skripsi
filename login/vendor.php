@@ -41,7 +41,7 @@ else if($act=="do_add"){
   if(!empty($_SESSION['user_id'])){
 	//Proses
 	 $insert_data = array();
-	 $insert_data['Nama_vendor']           = addslashes($_POST['Nama_vendor']);
+	 $insert_data['Nama_vendor']           = addslashes($_POST['nama_vendor']);
 	 $insert_data['created_date']          = $date_now_indo_full;
 	 $insert_data['last_update']           = $date_now_indo_full;
   
@@ -54,28 +54,25 @@ else if($act=="do_add"){
 
 else if($act=="edit" and $id_parameter!=""){
     $edit = $gen_model->GetOneRow('vendor',array('id_vendor'=>$gen_controller->decrypt($id_parameter))); 
-    foreach($edit as $key=>$val){
-                  $key=strtolower($key);
-                  $$key=$val;
+	foreach($edit as $key=>$val){
+		  $key=strtolower($key);
+		  $$key=$val;
     }
-    $data = array('id_vendor'=>$gen_controller->encrypt($id_vendor),'gambar'=>$basepath."assets/images/vendor/".$gambar);
-    echo json_encode($data); 
+    $data = array('id_vendor'=>$gen_controller->encrypt($id_vendor),'Nama_vendor'=>$nama_vendor);
+	echo json_encode($data); 
 }
 else if($act=="do_update"){
   if(!empty($_SESSION['user_id'])){ 
        
         //Proses
          $update_data = array();
-         $update_data['last_update']    = $date_now_indo_full;
-          
-         $update_data['gambar']    = $foto_name;
-        
-       
+         $update_data['last_update']    = $date_now_indo_full; 
+         $update_data['Nama_vendor']     = addslashes($_POST['nama_vendor']);
+              
         //Paramater
           $where_data = array();
           $where_data['id_vendor']             = $gen_controller->decrypt($_POST['id_parameter']);
        
-
           echo $gen_model->Update('vendor',$update_data,$where_data);
 
   }
@@ -90,9 +87,7 @@ else if($act=="do_delete"){
     $where_data['id_vendor']  = $gen_controller->decrypt($_POST['id_parameter']);
     
     //Hapus Foto
-    $path      = "../assets/images/vendor/";
     $foto_name = $gen_model->GetOne('gambar','vendor',$where_data);
-    $gen_controller->delete_file($path,$foto_name);
     echo $gen_model->Delete('vendor',$where_data);
   }
   else {

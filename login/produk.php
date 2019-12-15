@@ -54,9 +54,11 @@ else if($act=="do_add"){
     $insert_data['harga']           	  = str_replace(".","",addslashes($_POST['harga']));
     $insert_data['keterangan']            = addslashes($_POST['keterangan']);
     $insert_data['vendor']	              = addslashes($_POST['vendor']);
-	$insert_data['tahun']          		  = addslashes($_POST['tahun']);
-	$insert_data['bulan']	              = addslashes($_POST['bulan']);
-    $insert_data['gambar']	              = $foto_name;
+	if ($_POST['Kategori']=="1"){
+		$insert_data['tahun']          		  = addslashes($_POST['tahun']);
+		$insert_data['bulan']	              = addslashes($_POST['bulan']);
+    }
+	$insert_data['gambar']	              = $foto_name;
     $insert_data['created_date']          = $date_now_indo_full;
     $insert_data['last_update']           = $date_now_indo_full;
 			
@@ -99,8 +101,10 @@ else if($act=="do_update"){
 		$update_data['harga']           	  = str_replace(".","",addslashes($_POST['harga']));
 		$update_data['keterangan']            = addslashes($_POST['keterangan']);
 		$update_data['vendor']	              = addslashes($_POST['vendor']);
-		$update_data['tahun']          		  = addslashes($_POST['tahun']);
-		$update_data['bulan']	              = addslashes($_POST['bulan']);
+		if ($_POST['kategori']=="1"){
+			$update_data['tahun']          		  = addslashes($_POST['tahun']);
+			$update_data['bulan']	              = addslashes($_POST['bulan']);
+		}
 		$update_data['gambar']	              = $foto_name;
 		$update_data['created_date']          = $date_now_indo_full;
 		$update_data['last_update']           = $date_now_indo_full;
@@ -111,6 +115,7 @@ else if($act=="do_update"){
         
         if($update_data['nama_produk']!=""){
           echo $gen_model->Update('produk',$update_data,$where_data);
+		  
 		  if ($update_data['gambar']!=""){
 			$gen_controller->upload_file($tmp,$path,$foto_name);
 		  }	

@@ -50,7 +50,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="forms-sample" id="form_add" method="POST" autocomplete="off">
+                  <form class="forms-sample" id="form_add" name="form_add" method="POST" autocomplete="off">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -177,7 +177,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="forms-sample" id="form_edit" method="POST" autocomplete="off">
+                  <form class="forms-sample" id="form_edit"  name="form_edit" method="POST" autocomplete="off">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -209,7 +209,7 @@
                       <div class="col-md-6" id="stock2">
                         <div class="form-group">
                           <label for="exampleInputName1">Stock <span class="text-danger">*</span></label>
-                          <input class="form-control" id="stock3" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text" required>
+                          <input class="form-control" id="stock3" name="stock" onkeydown="return numbersonly(this, event);" placeholder="stock" type="text">
                         </div>
                       </div>
 					  <div id="tahun2" class="col-md-6" style="display:none">
@@ -218,7 +218,7 @@
                          <table width=100% border=0px>
 						 <tr>
 						 <td> 
-							<select class="form-control" style="width:120px!important" id="tahun"  name="tahun" required>
+							<select class="form-control" style="width:120px!important" id="tahun"  name="tahun">
 								  <option value=""></option>
 								  <?php 
 								  for ($i=2019;$i<=2030;$i++){
@@ -230,7 +230,7 @@
 							</select>
 						 </td>
 						 <td>  
-						 <select class="form-control" style="width:120px!important" id="bulan"  name="bulan" required>
+						 <select class="form-control" style="width:120px!important" id="bulan"  name="bulan">
 								  <option value=""></option>
 								  <?php 
 								  $arr_periode = array(1=>"Januari",2=>"Februari",3=>"Maret",4=>"April",5=>"Mei",6=>"Juni",7=>"Juli",8=>"Agustus",9=>"September",10=>"Oktober",11=>"November",12=>"Desember");
@@ -314,11 +314,9 @@
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
-            console.log(data);
-			  
 			  $("#id_parameter").val(data.id_parameter);
               $("#nama_produk").val(data.nama_produk);
-              $("#stock2").val(data.stock);
+              $("#stock3").val(data.stock);
               $("#harga1").val(data.harga);
               $("#kategori1").val(data.kategori);
               $("#vendor1").val(data.vendor);
@@ -403,20 +401,26 @@
 function hide(value) {
   if (value == "1"){
 	  document.getElementById('stock1').style.display = 'none';    
-	  document.getElementById('tahun1').style.display = 'block';	  
+	  document.getElementById('tahun1').style.display = 'block';
+	  document.form_add.tahun.setAttribute('required',true);
+	  document.form_add.bulan.setAttribute('required',true);
   }else{
 	  document.getElementById('stock1').style.display = 'block';
-	   document.getElementById('tahun1').style.display = 'none';
+	  document.getElementById('tahun1').style.display = 'none';
+	  document.getElementById('stock').setAttribute('required',true); 
   }
 }
 
 function hide2(value) {
   if (value == "1"){
 	  document.getElementById('stock2').style.display = 'none';    
-	  document.getElementById('tahun2').style.display = 'block';	  
+	  document.getElementById('tahun2').style.display = 'block';
+	  document.form_edit.tahun.setAttribute('required',true);
+	  document.form_edit.bulan.setAttribute('required',true);		
   }else{
 	  document.getElementById('stock2').style.display = 'block';
-	   document.getElementById('tahun2').style.display = 'none';
+	  document.getElementById('tahun2').style.display = 'none';
+	  document.getElementById('stock3').setAttribute('required',true);
   }
 }
 </script>
