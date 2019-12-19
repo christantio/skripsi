@@ -1,6 +1,6 @@
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-   <img src="<?php echo $basepath ?>assets/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+   <img src="<?php echo $basepath ?>assets/img/3.jpeg" alt="fashion img" width=100% height=50%>
    <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">

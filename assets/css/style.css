@@ -177,60 +177,6 @@ img {
   margin-right: 5px;
 }
 
-.aa-add-to-cart-btn:hover {
-  border: 1px solid #ccc;
-  color: #756;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  margin-top: 5px;
-  padding: 10px 15px;
-  text-transform: uppercase;
-  transition: all 0.5s ease 0s;
-}
-
-.aa-add-to-cart-btn:active {
-  border: 1px solid #ccc;
-  color: #756;
-  background-color:#000;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  margin-top: 5px;
-  padding: 10px 15px;
-  text-transform: uppercase;
-  transition: all 0.5s ease 0s;
-}
-
-.aa-add-to-cart-btn:active:after {
-  border: 1px solid #ccc;
-  color: #756;
-  background-color:#000;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  margin-top: 5px;
-  padding: 10px 15px;
-  text-transform: uppercase;
-  transition: all 0.5s ease 0s;
-}
-.aa-add-to-cart-btn:after {
-  border: 1px solid #ccc;
-  color: #756;
-  background-color:#000;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  margin-top: 5px;
-  padding: 10px 15px;
-  text-transform: uppercase;
-  transition: all 0.5s ease 0s;
-}
-
 .aa-filter-btn {  
   color: #fff;
   font-size: 15px;
@@ -1223,7 +1169,7 @@ img {
 .aa-product-catg li figure .aa-add-card-btn {
   background: #000 none repeat scroll 0 0;
   bottom: 0;
-  color: #000;
+  color: #fff;
   font-size: 16px;
   font-weight: bold;
   left: 0;
@@ -1258,7 +1204,6 @@ img {
   transition: all 0.5s;
 }
 .aa-product-catg li .aa-product-price {
-  color: #333;
   font-weight: bold;
   letter-spacing: 0.5px;
   font-size: 16px;
@@ -2281,7 +2226,7 @@ img {
   font-size: 18px;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-bottom .nav-tabs li a:hover, #aa-product-details .aa-product-details-area .aa-product-details-bottom .nav-tabs li a:focus {
-  background-color: #000;
+  background-color: transparent;
   border: none;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-bottom #description {

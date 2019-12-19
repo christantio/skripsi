@@ -185,5 +185,10 @@
   <script type="text/javascript" src="<?php echo $basepath ?>assets/js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="<?php echo $basepath ?>assets/js/custom.js"></script>
+  <!-- Library - Js -->
+  <script src="<?php echo $basepath ?>assets/js/popper.min.js"></script>
+  <script src="<?php echo $basepath ?>assets/js/lib.js"></script>
+  <!-- Library - Theme JS -->
+	<script id="function" src="<?php echo $basepath ?>assets/js/functions.js"></script>
   </body>
 </html>

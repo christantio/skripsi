@@ -42,6 +42,7 @@ else if($act=="do_add"){
 	//Proses
     $insert_data = array();
     $insert_data['kategori']              = addslashes($_POST['kategori']);
+    $insert_data['link']              = addslashes($_POST['link']);
     $insert_data['created_date']          = $date_now_indo_full;
     $insert_data['last_update']           = $date_now_indo_full;
     
@@ -60,10 +61,10 @@ else if($act=="do_add"){
 else if($act=="edit" and $id_parameter!=""){
 	$edit = $gen_model->GetOneRow('kategori',array('id_kategori'=>$gen_controller->decrypt($id_parameter))); 
 	foreach($edit as $key=>$val){
-                  $key=strtolower($key);
-                  $$key=$val;
+	  $key=strtolower($key);
+	  $$key=$val;
     }
-    $data = array('id_kategori'=>$gen_controller->encrypt($id_kategori),'kategori'=>$kategori);
+    $data = array('id_kategori'=>$gen_controller->encrypt($id_kategori),'kategori'=>$kategori,'link'=>$link);
     echo json_encode($data); 
 }
 else if($act=="do_update"){
@@ -71,6 +72,7 @@ else if($act=="do_update"){
         //Proses
           $update_data = array();
           $update_data['kategori']          = addslashes($_POST['kategori']);
+          $update_data['link']          = addslashes($_POST['link']);
           $update_data['last_update']    = $date_now_indo_full;
        
         //Paramater

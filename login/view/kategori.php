@@ -51,6 +51,8 @@
                         <div class="form-group">
                           <label for="exampleInputName1">Kategori <span class="text-danger">*</span></label>
                           <input class="form-control" id="kategori" name="kategori" placeholder="Kategori" type="text" required>
+						  <label for="exampleInputName1">Link<span class="text-danger">*</span></label>
+                          <input class="form-control" id="link" name="link" placeholder="Link" type="text" required>
                         </div>
                       </div>
                     </div>
@@ -79,8 +81,10 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label for="exampleInputName1">Kategori <span class="text-danger">*</span></label>
-                          <input class="form-control" id="kategori_edit" name="kategori" value="<?php echo $kategori ?>" placeholder="kategori" type="text" required>
+                          <input class="form-control" id="kategori_edit" name="kategori" value="" placeholder="kategori" type="text" required>
                           <input id="id_parameter" name="id_parameter" type="hidden" required>
+						  <label for="exampleInputName1">Link<span class="text-danger">*</span></label>
+                          <input class="form-control" id="link_edit" name="link" placeholder="Link" type="text" required>
                         </div>
                       </div>
                     </div>
@@ -116,6 +120,7 @@
             console.log(data);
               $("#id_parameter").val(data.id_kategori);
               $("#kategori_edit").val(data.kategori);
+              $("#link_edit").val(data.link);
           }
       });
   }

@@ -22,6 +22,11 @@
     <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
     <!-- Top Slider CSS -->
     <link href="<?php echo $basepath ?>assets/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+	
+	<!-- DatePicker -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/js/datepicker/dist/datepicker.min.css">
+	<script type="text/javascript" src="<?php echo $basepath ?>assets/js/datepicker/dist/datepicker.min.js"></script>
+	
 	<!-- logo tab --> 
 	<link rel="shortcut icon" href="<?php echo $basepath ?>assets/img/logo.jpg">
 	<!-- plugins:css -->
@@ -154,8 +159,8 @@
               <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="">
-                  <input type="text" name="" id="" placeholder="Pencarian Berdasarkan Produk ">
+                <form action="product" method="POST">
+                  <input type="text" name="query" id="query" placeholder="Pencarian Berdasarkan Produk ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>

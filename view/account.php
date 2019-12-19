@@ -11,6 +11,10 @@
                  <form action="account?act=do_add" method=POST class="aa-login-form">
                     <label for="">Nama<span>*</span></label>
                     <input type="text" name=nama placeholder="Nama" required>
+					<label for="">Alamat<span>*</span></label>
+                    <input type="text" name=alamat placeholder="alamat" required>
+					<label for="">Tanggal Lahir<span>*</span></label>
+					<input readonly style="background-color:white;color:black;margin-right: -4%;" maxlength="25" type="text" class="form-control datepicker" placeholder="<?php echo date("d/m/Y") ?>" name="tgl_lahir" id="tgl_lahir" required>
 					<label for="">Email<span>*</span></label>
                     <input type="text" name=email placeholder="Email" required>
                     <label for="">Password<span>*</span></label>
@@ -26,3 +30,10 @@
    </div>
  </section>
  <!-- / Cart view section -->
+<script type="text/javascript">
+	setTimeout(function(){ 
+		 $('.datepicker').datepicker({
+			format: 'dd/mm/yyyy'
+		});
+	}, 2000);
+</script>
