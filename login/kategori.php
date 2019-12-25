@@ -107,8 +107,7 @@ else if($act=="list_rest"){
 	$input =& $_POST;
 	$iColumnCount = count($aColumns);
 	
-	$sLimit = $gen_controller->Paging($input);
-	
+	$sLimit = $gen_controller->Paging($input);	
 	$sOrder = $gen_controller->Ordering($input, $aColumns );
 	$sWhere = $gen_controller->Filtering($aColumns, $iColumnCount, $input);
 	$aQueryColumns = array();

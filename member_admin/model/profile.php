@@ -1,9 +1,9 @@
 <?php 
-class testimoni { 
-	function getDataTesti($where,$order,$limit){
+class profile { 
+	function getDataProfile($where,$order,$limit){
 		  global $db;
-		  $sql = "SELECT  ts.nama,ts.id_testi,ts.created_date,ts.last_update FROM testimoni as ts
-					".$where."  ".$order.$limit;
+		  $sql = "SELECT  pem.* FROM login as pem
+					".$where."  ".$order.$limit;		
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	
@@ -12,9 +12,9 @@ class testimoni {
 		  	return $rs;
 		  }
 	}
-	function getCountTesti($where){
+	function getCountProfile($where){
 		  global $db;
-		  $sql = "SELECT  ts.id_testi FROM testimoni as ts ".$where;
+		  $sql = "SELECT  pem.id_pesanan FROM login as pem ".$where;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	
@@ -23,5 +23,8 @@ class testimoni {
 		  	return $rs->recordCount();
 		  }
 	}
+	
+	
+	
 }
 ?>

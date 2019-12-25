@@ -12,14 +12,43 @@
   <title>My Plan - Dashboard</title>
 
   <!-- Custom fonts for this template-->
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="<?php echo $basepath_member ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   
-  <!-- Custom styles for this page -->
-  <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="<?php echo $basepath_member ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
+  
+	<!-- Custom styles for this page -->
+	<link href="<?php echo $basepath_member ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  
+	<!-- Font awesome -->
+	<link href="<?php echo $basepath ?>assets/css/font-awesome.css" rel="stylesheet">
+	<!-- SmartMenus jQuery Bootstrap Addon CSS -->
+	<link href="<?php echo $basepath ?>assets/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+	<!-- Product view slider -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/css/jquery.simpleLens.css">    
+	<!-- slick slider -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/css/slick.css">
+	<!-- price picker slider -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/css/nouislider.css">
+	<!-- Theme color -->
+	<link id="switcher" href="<?php echo $basepath ?>assets/css/theme-color/default-theme.css" rel="stylesheet">
+	<!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
+	<!-- Top Slider CSS -->
+	<link href="<?php echo $basepath ?>assets/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+
+	<!-- logo tab --> 
+	<link rel="shortcut icon" href="<?php echo $basepath ?>assets/img/logo.jpg">
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="<?php echo $basepath_admin ?>assets/plugin/iconfonts/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="<?php echo $basepath_admin ?>assets/plugin/css/vendor.bundle.base.css">
+	<link rel="stylesheet" href="<?php echo $basepath_admin ?>assets/plugin/css/vendor.bundle.addons.css">	
+	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/js/sweetalert2/dist/sweetalert2.min.css">
+	<!-- Main style sheet -->
+	<link href="<?php echo $basepath ?>assets/css/style.css" rel="stylesheet">    
+
+	<!-- Google Font -->
+	<link href='<?php echo $basepath ?>assets/css/font-awesome1.css' rel='stylesheet' type='text/css'>
+   
 
 </head>
 
@@ -180,19 +209,21 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
-
+			
 
             <div class="topbar-divider d-none d-sm-block"></div>
-
+			<?php 
+				$gambar = $db->getOne("select gambar from login where email='".$_SESSION['email']."'");
+			?>
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
-                <img class="img-profile rounded-circle" src="">
+                <img class="img-profile rounded-circle" src="<?=$basepath."assets/img/man/".$gambar ?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

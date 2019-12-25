@@ -26,5 +26,9 @@
  RewriteRule pembatalan/?$    					pembatalan.php [L]   
  RewriteRule pembatalan/([^/.]+)/?$				pembatalan.php?do_act=$1  [L]	 
  RewriteRule pembatalan/([^/.]+)/([^/.]+)?$		pembatalan.php?do_act=$1&id_parameter=$2  [L]
+
+ RewriteRule profile/?$    						profile.php [L]   
+ RewriteRule profile/([^/.]+)/?$				profile.php?do_act=$1  [L]	 
+ RewriteRule profile/([^/.]+)/([^/.]+)?$		profile.php?do_act=$1&id_parameter=$2  [L]
  
 </IfModule>

@@ -1,9 +1,9 @@
 <?php 
-class faq { 
-	function getDataFAQ($where,$order,$limit){
+class pembayaran { 
+	function getDataPembayaran($where,$order,$limit){
 		  global $db;
-		  $sql = "SELECT  fq.judul_faq,fq.id_faq,fq.created_date,fq.last_update FROM faq as fq
-					".$where."  ".$order.$limit;
+		  $sql = "SELECT  pem.* FROM pembayaran as pem
+					".$where."  ".$order.$limit;		
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	
@@ -12,9 +12,9 @@ class faq {
 		  	return $rs;
 		  }
 	}
-	function getCountFAQ($where){
+	function getCountPembayaran($where){
 		  global $db;
-		  $sql = "SELECT  fq.id_faq FROM faq as fq ".$where;
+		  $sql = "SELECT  pem.id_pesanan FROM pembayaran as pem ".$where;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	
@@ -23,5 +23,8 @@ class faq {
 		  	return $rs->recordCount();
 		  }
 	}
+	
+	
+	
 }
 ?>

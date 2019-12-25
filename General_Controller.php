@@ -26,6 +26,7 @@ date_default_timezone_set("Asia/Jakarta");
 $root_folder   = $_SERVER['DOCUMENT_ROOT']."/skripsi/";
 $basepath      = "http://".$_SERVER['HTTP_HOST']."/skripsi/";
 $basepath_admin      = "http://".$_SERVER['HTTP_HOST']."/skripsi/login/";
+$basepath_member      = "http://".$_SERVER['HTTP_HOST']."/skripsi/member_admin/";
 $secret_key    = "skripsi_v3";
 $date_now_indo = date("Y-m-d");
 $date_now_indo_full = date("Y-m-d H:i:s");

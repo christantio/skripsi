@@ -24,14 +24,12 @@
                       <thead>
                         <tr>
                             <th><b>No. Pesanan</b></th>
-                            <th><b>Tipe</b></th>
                             <th><b>Status</b></th>
                             <th><b>Nama</b></th>
                             <th><b>No Tlp</b></th>
                             <th><b>Email</b></th>
                             <th><b>Unit</b></th>
                             <th><b>Biaya</b></th>
-                            <th><b>Jadwal Pembayaran</b></th>
                             <th><b>Tanggal dibuat</b></th>
                             <th><b>Aksi</b></th>
                         </tr>
@@ -300,11 +298,9 @@
           { "orderable": true, "targets": 3, "searchable": true,"width":120 },
           { "orderable": true, "targets": 4, "searchable": true,"width":120 },
           { "orderable": true, "targets": 5, "searchable": true,"width":120 },
-          { "orderable": false, "targets": 6, "searchable": false,"width":120 },
+          { "orderable": true, "targets": 6, "searchable": false,"width":120 },
           { "orderable": true, "targets": 7, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 8, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 9, "searchable": true,"width":120 },
-          { "orderable": false, "targets": 10, "searchable": false,"width":140 }
+          { "orderable": true, "targets": 8, "searchable": true,"width":120 }
           ]
       });
 });

@@ -61,5 +61,29 @@ class user {
 		  	return $rs;
 		  }
 	}
+	function getDataPesanan($where,$order,$limit){
+		  global $db;
+		  $sql = "SELECT  pes.* FROM pesanan as pes
+					".$where."  ".$order.$limit;
+	      $rs  = $db->Execute($sql);
+		  if(!$rs) {
+		  	return $db->ErrorMsg();	
+		  }
+		  else {
+		  	return $rs;
+		  }
+	}
+	function getCountPesanan($where){
+		  global $db;
+		  $sql = "SELECT  pes.id_pesanan FROM pesanan as pes ".$where;
+	      $rs  = $db->Execute($sql);
+		  if(!$rs) {
+		  	return $db->ErrorMsg();	
+		  }
+		  else {
+		  	return $rs->recordCount();
+		  }
+	}
+	
 }
 ?>
