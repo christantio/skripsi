@@ -141,11 +141,12 @@
 									 <tr>
 										<td>$no_pesanan</td>
 										<td>$nm_barang</td>
-										<td>$total_biaya</td>
-										<td>$jml_bayar</td>
+										<td>".$gen_controller->ribuan($total_biaya)."</td>
+										<td>".$gen_controller->ribuan($jml_bayar)."</td>
 										<td>
 										<center>
-											<button data-toggle='modal' type='button' class='btn btn-gradient-primary btn-rounded btn-icon' onClick=location.href='pembayaran?act=edit&id_parameter='><i class='mdi mdi-pencil'></i></button> 
+											<a class='btn btn-sm btn-primary' href='pembayaran?act=bayar&no_pesanan=$no_pesanan' style='width:100px;margin-bottom:2pt;'> Bayar </a><br>
+											<a class='btn btn-sm btn-danger'  href='pembayaran?act=claim&no_pesanan=$no_pesanan' style=\"width:100px;margin-bottom:2pt;color:white;\"> Claim </a><br/>	
 										</center>
 										</td>
 									</tr>";

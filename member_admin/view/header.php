@@ -45,7 +45,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo $basepath ?>assets/js/sweetalert2/dist/sweetalert2.min.css">
 	<!-- Main style sheet -->
 	<link href="<?php echo $basepath ?>assets/css/style.css" rel="stylesheet">    
-
+	<script src="<?php echo $basepath ?>assets/js/rupiah.js"></script>
 	<!-- Google Font -->
 	<link href='<?php echo $basepath ?>assets/css/font-awesome1.css' rel='stylesheet' type='text/css'>
    

@@ -19,8 +19,8 @@ $md_pembayaran      = new pembayaran();
 session_start();
 
 $act="";
-if(isset($_GET['do_act'])){
-    $act = $_GET['do_act'];
+if(isset($_GET['act'])){
+    $act = $_GET['act'];
 }
 
 $id_parameter="";
@@ -72,50 +72,63 @@ else if($act=="do_add"){
     echo 'NOT_LOGIN';
   }
 }
-
-else if($act=="edit" and $id_parameter!=""){
-    $edit = $gen_model->GetOneRow('produk',array('Id_Produk'=>$gen_controller->decrypt($id_parameter))); 
-	foreach($edit as $key=>$val){
-	  $key=strtolower($key);
-	  $$key=$val;
-    }
-    $data = array('id_parameter'=>$id_parameter,'nama_produk'=>$nama_produk,'stock'=>$stock,'harga'=>$harga,'kategori'=>$kategori,'vendor'=>$vendor,'keterangan'=>$keterangan,'gambar'=>$basepath."assets/img/produk/".$gambar);
-    echo json_encode($data); 
-}
-else if($act=="do_update"){
-  if(!empty($_SESSION['user_id'])){ 
-        //UPload
-		  $tmp = $_FILES["gambar"]["tmp_name"];
-		  $foto_asal = $_FILES['gambar']['name'];
-		  $foto_name = date("ymdhis")."_produk_".$foto_asal;
-		  $path      = "../assets/img/produk/";
-	  
-		//Proses
-        $update_data = array();
-		$update_data['nama_produk']           = addslashes($_POST['nama_produk']);
-		$update_data['kategori']           	  = addslashes($_POST['kategori']);
-		$update_data['stock']           	  = addslashes($_POST['stock']);
-		$update_data['harga']           	  = str_replace(".","",addslashes($_POST['harga']));
-		$update_data['keterangan']            = addslashes($_POST['keterangan']);
-		$update_data['vendor']	              = addslashes($_POST['vendor']);
-		if ($_POST['kategori']=="1"){
-			$update_data['tahun']          		  = addslashes($_POST['tahun']);
-			$update_data['bulan']	              = addslashes($_POST['bulan']);
-		}
-		$update_data['gambar']	              = $foto_name;
-		$update_data['created_date']          = $date_now_indo_full;
-		$update_data['last_update']           = $date_now_indo_full;
-       
-        //Paramater
-          $where_data = array();
-          $where_data['Id_Produk']             = $gen_controller->decrypt($_POST['id_parameter']);
+else if($act=="do_bayar"){
+	if(!empty($_SESSION['user_id'])){ 
+	   //UPload
+   	   $tmp = $_FILES["gambar"]["tmp_name"];
+	   $foto_asal = $_FILES['gambar']['name'];
+	   $foto_name = date("ymdhis")."_profile_".$foto_asal;
+	   $path      = "../assets/img/man/";
+	   
+	   $tanggal_array=explode("\/", $_POST['tgl_lahir']);
         
-        if($update_data['nama_produk']!=""){
-          echo $gen_model->Update('produk',$update_data,$where_data);
-		  
-		  if ($update_data['gambar']!=""){
-			$gen_controller->upload_file($tmp,$path,$foto_name);
-		  }	
+        if($_POST['nama']!=""){
+			
+			$qry = "INSERT INTO PEMBAYARAN () VALUES ()";
+			$result=$db->execute($qry);
+			
+			if ($foto_name!=""){
+				$gen_controller->upload_file($tmp,$path,$foto_name);
+			}
+			
+			if (!$result){
+				return $db->ErrorMsg();
+			}
+			else{
+				echo "
+						<link href=\"".$basepath."assets/css/bootstrap.css\" rel=\"stylesheet\" />
+						<link href=\"".$basepath."assets/css/font-awesome.css\" rel=\"stylesheet\" />
+						<link href=\"".$basepath."assets/css/style.css\" rel=\"stylesheet\" />
+				";
+				echo "
+				<p align=center>
+				<div class=\"row\">
+					<div class=\"col-md-6 col-md-offset-3\">
+						<!-- begin panel -->
+						<div class=\"panel panel-info\" data-sortable-id=\"ui-widget-12\">
+							<div class=\"panel-heading\">
+								<h4 class=\"panel-title\">Info</h4>
+							</div>
+							<div class=\"panel-body bg-aqua text-white\">
+								<div class=\"row\">
+									<div class=\"col-md-2\">
+										<i class=\"fa fa-info-circle fa-3x\" aria-hidden=\"true\"></i>
+									</div>
+									<div class=\"col-md-10\">
+										<p>Data Berhasil Disimpan</p>
+										<p><button class=\"btn btn-inverse\" onClick=location.href='profile'>&laquo; Kembali</button></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end panel -->
+					</div>
+				</div>
+				</p>
+				";
+				die();
+			}
+			
 		}
         else {
           echo 'Terjadi kesalahan';
@@ -125,59 +138,20 @@ else if($act=="do_update"){
     echo 'NOT_LOGIN';
   }
 }
-else if($act=="do_delete"){
-  if(!empty($_SESSION['user_id'])){ 
-    //Paramater
-    $where_data = array();
-    $where_data['Id_Produk']  = $gen_controller->decrypt($_POST['id_parameter']);
-    echo $gen_model->Delete('produk',$where_data);
-  }
-  else {
-    echo 'NOT_LOGIN';
-  }
+else if($act=="edit" and $id_parameter!=""){
+    $edit = $gen_model->GetOneRow('produk',array('Id_Produk'=>$gen_controller->decrypt($id_parameter))); 
+	foreach($edit as $key=>$val){
+	  $key=strtolower($key);
+	  $$key=$val;
+    }
+    $data = array('id_parameter'=>$id_parameter,'nama_produk'=>$nama_produk,'stock'=>$stock,'harga'=>$harga,'kategori'=>$kategori,'vendor'=>$vendor,'keterangan'=>$keterangan,'gambar'=>$basepath."assets/img/produk/".$gambar);
+    echo json_encode($data); 
 }
-else if($act=="list_rest"){
-  $aColumns = array('pem.No_Invoice','pem.created_date','pem.last_update','pem.Id_Pembayaran','pem.jumlah_bayar','pem.status','pem.no_pesan'); //Kolom Pada Tabel
-
-  	// Input method (use $_GET, $_POST or $_REQUEST)
-	$input =& $_POST;
-	$iColumnCount = count($aColumns);
-
-
-	$sLimit = $gen_controller->Paging($input);
-	$sOrder = $gen_controller->Ordering($input, $aColumns );
-	$sWhere = $gen_controller->Filtering($aColumns, $iColumnCount, $input);
-
-	$aQueryColumns = array();
-	foreach ($aColumns as $col) {
-		if ($col != ' ') {
-			$aQueryColumns[] = $col;
-		}
-	}
-
-	$rResult 				= $md_pembayaran->getDataPembayaran($sWhere,$sOrder,$sLimit);
-	$rResultFilterTotal 	= $md_pembayaran->getCountPembayaran($sWhere);
-
-
-	$output = array(
-		"sEcho"                => (empty($input['sEcho']) ? '0' : intval($input['sEcho'])),
-		"iTotalRecords"        => $rResultFilterTotal,
-		"iTotalDisplayRecords" => $rResultFilterTotal,
-		"aaData"               => array(),
-	);
-
-	while($aRow = $rResult->FetchRow()){
-
-		$param_id = $gen_controller->encrypt($aRow['Id_Pembayaran']);
-		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
-		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
-
-		$edit_delete = "<center>".$edit.$delete."</center>";
-	 	$row = array();
-	 	$row = array($aRow['No_Invoice'],$aRow['Id_Pembayaran'],$aRow['jumlah_bayar'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
-		$output['aaData'][] = $row;
-	}
-	echo json_encode($output);
+else if($act=="bayar"){
+	 //View
+	include "view/header.php";
+	include "view/pembayaran_bayar.php";
+	include "view/footer.php";
 }
 else {
 	$gen_controller->response_code(http_response_code());
