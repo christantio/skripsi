@@ -8,7 +8,7 @@
 			
             <div class="card-body">
               <div class="table-responsive">
-					<h4>Pembayaran</h4>
+					<h4>Claim</h4>
 					<br>
 					<?php 
 						$no_pesanan = $_GET['no_pesanan'];
@@ -21,10 +21,10 @@
 									$$key = $val;
 								}
 							}
-						echo "<small> Rekening Pembayaran :<br> <i> $nama : $no_rek </i></small>";	
+						echo "<small>Saldo akan sepenuhnya masuk dalam total klaim anda </i></small>";	
 					?>	
 					
-					 <form action="pembayaran?act=do_bayar" method=POST class="aa-login-form" enctype="multipart/form-data" onsubmit=\"return validation()\">
+					 <form action="pembayaran?act=do_claim" method=POST class="aa-login-form" enctype="multipart/form-data" onsubmit=\"return validation()\">
 						
 						<?php 
 							
@@ -38,7 +38,9 @@
 									$key = strtolower($key);
 									$$key = $val;
 								}
-							}	
+							}
+							
+							$total_bayar = $db->getOne("select sum(jumlah_bayar) from pembayaran where no_pesan = '".$no_pesanan."'");	
 							
 						?>	
 						<label for="">No Pesanan <span>*</span></label>
@@ -46,14 +48,12 @@
 						<label for="">Nama Produk <span>*</span></label>
 						<input type="text" name="nama_produk" placeholder="Nama Produk" value='<?=$nama_produk ?>' disabled>						
 						<label for="">Harga Barang<span>*</span></label>
-						<input type="text" name="total_biaya" placeholder="alamat" value='<?=$gen_controller->ribuan($total_biaya); ?>' disabled>
-						<label for="">Jumlah Cicilan<span>*</span></label>
-						<input type="text" name="jml_cicilan" placeholder="Jumlah Cicilan" value='<?=$gen_controller->ribuan($jml_cicilan); ?>' disabled>
-						<label for="">Jumlah Bayar<span>*</span></label>
-						<input type="text" name="jml_bayar" placeholder="Jumlah Bayar" maxlength="4" onkeydown="return numbersonly(this, event);" value='' required />
-						<label for="">Unggah Foto<span>*</span></label>
-						<input type="file" class="form-control-file" id="gambar" name="gambar"><br/><br/>
-						<button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Bayar</button>                    
+						<input type="text" name="total_biaya" placeholder="Total Biaya" value='<?=$gen_controller->ribuan($total_biaya); ?>' disabled>
+						<label for="">Jumlah Claim<span>*</span></label>
+						<input type="text" name="jml_bayar" placeholder="Jumlah Bayar" maxlength="4" onkeydown="return numbersonly(this, event);" value='<?=$gen_controller->ribuan($total_bayar); ?>' required />
+						<label for="">Keterangan<span>*</span></label>
+						<textarea id="keterangan" name="keterangan" class="form-control"> </textarea>
+						<button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Claim</button>                    
 					  </form>
               </div>
 			  </div>

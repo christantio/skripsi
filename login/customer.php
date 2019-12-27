@@ -7,9 +7,9 @@ $gen_controller  = new General_Controller();
 include "../model/General_Model.php";
 $gen_model      = new General_Model();
 
-//Model kategori
-include "model/kategori.php";
-$md_kategori      = new kategori();
+//Model customer
+include "model/customer.php";
+$md_customer      = new customer();
 
 //Model User
 include "model/user.php";
@@ -34,7 +34,7 @@ if(isset($_GET['id_parameter'])){
 if($act=="" or $act==null) {
   //View
   include "view/header.php";
-  include "view/kategori.php";
+  include "view/customer.php";
   include "view/footer.php";
 }
 else if($act=="do_add"){

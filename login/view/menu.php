@@ -7,7 +7,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="kategori">
+            <a class="nav-link" href="customer">
               <i class="mdi mdi-account-multiple-plus menu-icon"></i>              
               <span class="menu-title">Customer</span>              
             </a>
@@ -29,19 +29,7 @@
               <i class="mdi mdi-bank menu-icon"></i>              
               <span class="menu-title">Bank</span>              
             </a>
-          </li>	
-          <!--<li class="nav-item">
-            <a class="nav-link" href="keluhan">
-              <i class="mdi mdi-library-books menu-icon"></i>              
-              <span class="menu-title">Keluhan</span>              
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="kritik_saran">
-              <i class="mdi mdi-email menu-icon"></i>              
-              <span class="menu-title">Kritik & Saran</span>              
-            </a>
-          </li>--> 
+          </li>	 
           <li class="nav-item">
             <a class="nav-link" href="pemesanan">
               <i class="mdi mdi-cart menu-icon"></i>              

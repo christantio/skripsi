@@ -27,6 +27,10 @@
  RewriteRule kategori/([^/.]+)/?$				kategori.php?do_act=$1  [L]	 
  RewriteRule kategori/([^/.]+)/([^/.]+)?$		kategori.php?do_act=$1&id_parameter=$2  [L] 
 
+ RewriteRule customer/?$    					customer.php [L]   
+ RewriteRule customer/([^/.]+)/?$				customer.php?do_act=$1  [L]	 
+ RewriteRule customer/([^/.]+)/([^/.]+)?$		customer.php?do_act=$1&id_parameter=$2  [L]
+ 
  RewriteRule produk/?$    						produk.php [L]   
  RewriteRule produk/([^/.]+)/?$					produk.php?do_act=$1  [L]	 
  RewriteRule produk/([^/.]+)/([^/.]+)?$			produk.php?do_act=$1&id_parameter=$2  [L]
