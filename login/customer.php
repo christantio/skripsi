@@ -37,48 +37,41 @@ if($act=="" or $act==null) {
   include "view/customer.php";
   include "view/footer.php";
 }
-else if($act=="do_add"){
-  if(!empty($_SESSION['user_id'])){
-	//Proses
-    $insert_data = array();
-    $insert_data['kategori']              = addslashes($_POST['kategori']);
-    $insert_data['created_date']          = $date_now_indo_full;
-    $insert_data['last_update']           = $date_now_indo_full;
-    
-    if($insert_data['kategori']!=""){
-        echo $gen_model->Insert('kategori',$insert_data);
-    }
-    else {
-        echo 'Terjadi kesalahan';
-    }
-  }
-  else {
-    echo 'NOT_LOGIN';
-  }
-}
-
 else if($act=="edit" and $id_parameter!=""){
-	$edit = $gen_model->GetOneRow('kategori',array('id_kategori'=>$gen_controller->decrypt($id_parameter))); 
+	$edit = $gen_model->GetOneRow('login',array('id_user'=>$gen_controller->decrypt($id_parameter))); 
 	foreach($edit as $key=>$val){
-                  $key=strtolower($key);
-                  $$key=$val;
+		  $key=strtolower($key);
+		  $$key=$val;
     }
-    $data = array('id_kategori'=>$gen_controller->encrypt($id_kategori),'kategori'=>$kategori);
+    $data = array('id_user'=>$gen_controller->encrypt($id_user),'username'=>$username,'email'=>$email,'nama_lengkap'=>$nama_lengkap,'alamat'=>$alamat,'gambar'=>$basepath."assets/img/man/".$gambar,"tgl_lahir"=>$tgl_lahir);
     echo json_encode($data); 
 }
 else if($act=="do_update"){
   if(!empty($_SESSION['user_id'])){ 
+		//UPload
+		  $tmp = $_FILES["gambar"]["tmp_name"];
+		  $foto_asal = $_FILES['gambar']['name'];
+		  $foto_name = date("ymdhis")."_profile_".$foto_asal;
+		  $path      = "../assets/img/man/";
+
+		  $tanggal_array=explode("\/", $_POST['tgl_lahir']);
+	   
         //Proses
           $update_data = array();
-          $update_data['kategori']          = addslashes($_POST['kategori']);
+          $update_data['username']       = addslashes($_POST['username']);
+          $update_data['email']          = addslashes($_POST['email']);
+          $update_data['nama_lengkap']   = addslashes($_POST['nama_lengkap']);
+          $update_data['alamat']         = addslashes($_POST['alamat']);
           $update_data['last_update']    = $date_now_indo_full;
-       
+		  $update_data['gambar']	     = $foto_name; 	
+		  $update_data['tgl_lahir']	     = $tanggal_array; 	
+	   
         //Paramater
           $where_data = array();
-          $where_data['id_kategori']             = $gen_controller->decrypt($_POST['id_parameter']);
+          $where_data['id_user']             = $gen_controller->decrypt($_POST['id_parameter']);
         
-        if($update_data['kategori']!=""){
-          echo $gen_model->Update('kategori',$update_data,$where_data);
+        if($update_data['username']!=""){
+          echo $gen_model->Update('login',$update_data,$where_data);
         }
         else {
           echo 'Terjadi kesalahan';
@@ -92,15 +85,15 @@ else if($act=="do_delete"){
   if(!empty($_SESSION['user_id'])){ 
     //Paramater
     $where_data = array();
-    $where_data['id_kategori']  = $gen_controller->decrypt($_POST['id_parameter']);
-    echo $gen_model->Delete('kategori',$where_data);
+    $where_data['id_user']  = $gen_controller->decrypt($_POST['id_parameter']);
+    echo $gen_model->Delete('login',$where_data);
   }
   else {
     echo 'NOT_LOGIN';
   }
 }
 else if($act=="list_rest"){
-  $aColumns = array('ktg.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
+  $aColumns = array('cs.username','cs.created_date','cs.id_user','cs.nama_lengkap','cs.email','cs.tgl_lahir','cs.alamat','cs.gambar'); //Kolom Pada Tabel  
   	// Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;
 	$iColumnCount = count($aColumns);
@@ -116,8 +109,8 @@ else if($act=="list_rest"){
 		}
 	}
 
-	$rResult 				= $md_kategori->getDataKategori($sWhere,$sOrder,$sLimit);
-	$rResultFilterTotal 	= $md_kategori->getCountKategori($sWhere);
+	$rResult 				= $md_customer->getDataCustomer($sWhere,$sOrder,$sLimit);
+	$rResultFilterTotal 	= $md_customer->getCountCustomer($sWhere);
 
 
 	$output = array(
@@ -129,13 +122,13 @@ else if($act=="list_rest"){
 
 	while($aRow = $rResult->FetchRow()){
 
-		$param_id = $gen_controller->encrypt($aRow['id_kategori']);
+		$param_id = $gen_controller->encrypt($aRow['id_user']);
 		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
 		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
 	 	$row = array();
-	 	$row = array($aRow['kategori'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['username'],$aRow['email'],$aRow['nama_lengkap'],$gen_controller->get_date_indonesia($aRow['tgl_lahir'])." ".substr($aRow['tgl_lahir'],10,9),$aRow['alamat'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),"<a target='_blank' id='single_image' href='".$basepath."assets/img/man/".$aRow['gambar']."'><button  class='btn btn-gradient-primary'><i class='mdi mdi-panorama'></i></button></a>","<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);

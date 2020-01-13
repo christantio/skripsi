@@ -4,6 +4,9 @@
             <h3 class="page-title">
               Data Bank
             </h3>
+			<div class="col-sm-8 col-xs-9 text-right m-b-20">
+                  <a href="bank/cetak/" class="btn btn-gradient-success btn-fw"><i class="mdi mdi-printer"></i> Cetak Bank</a>
+            </div>
           </div>
           <div class="card">
             <div class="card-body">

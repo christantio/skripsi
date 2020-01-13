@@ -4,13 +4,16 @@
             <h3 class="page-title">
               Data Kategori
             </h3>
+			<div class="col-sm-8 col-xs-9 text-right m-b-20">
+                  <a href="kategori/cetak/" class="btn btn-gradient-success btn-fw"><i class="mdi mdi-printer"></i> Cetak Kategori</a>
+            </div>
           </div>
           <div class="card">
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-4 col-xs-3">
                 </div>
-                <div class="col-sm-8 col-xs-9 text-right m-b-20">
+				<div class="col-sm-8 col-xs-9 text-right m-b-20">
                   <a href="#" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#add_modal"><i class="mdi mdi-plus"></i> Tambah Kategori</a>
                 </div>
               </div><br/>

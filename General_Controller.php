@@ -151,6 +151,29 @@ class General_Controller {
 		}
 	    return($result);
 	}
+	
+	function convert_date($ksotgl,$format="0"){
+		$ksotgl=substr($ksotgl,0,10);
+		$ksotgl=split("-",$ksotgl);
+		if(count($ksotgl)>= 3){
+
+			if($format=='0'){
+				$tanggal=$ksotgl[1]."/".$ksotgl[2]."/".$ksotgl[0]; //mm-dd-yyyy
+			}elseif($format=='1'){
+				$tanggal=$ksotgl[2]."/".$ksotgl[1]."/".$ksotgl[0]; //dd/mm/yyyy
+			}elseif($format=='2'){
+				$tanggal=$ksotgl[0]."-".$ksotgl[1]."-".$ksotgl[2]; //yyyy-mm-dd
+			}elseif($format=='3'){
+				$tanggal=$ksotgl[2]."".$ksotgl[1]."".$ksotgl[0]; //ddmmyyyy
+			}elseif($format=='4'){
+				$tanggal=$ksotgl[0]."/".$ksotgl[1]."/".$ksotgl[2]; //yyyy/mm/dd
+			}elseif($format=='5'){
+				$tanggal=$ksotgl[0]."".$ksotgl[1]."".$ksotgl[2]; //yyyymmdd
+			}
+		}
+		if($tanggal=="01/01/1900" || $tanggal=="1900/01/01")unset($tanggal);
+		return $tanggal;
+	}
 
 	//example : upload_file('temporary_file','path_file','file_name')
 	function upload_file($tmp,$path,$file_name) {

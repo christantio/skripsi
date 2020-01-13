@@ -128,6 +128,91 @@ else if($act=="do_update"){
     echo 'NOT_LOGIN';
   }
 }
+else if($act=="cetak"){
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=Laporan_Produk.xls");
+	echo "<style>
+		table.report {
+		border-width: 1px;
+		border-spacing: ;
+		border-style: solid;
+		border-color: 000000;
+		border-collapse: collapse;
+		background-color: white;
+		width:95%;
+		}
+		
+		table.report tr {
+		
+		background-color:#FFFFFF;
+		
+		}
+		table.report th {
+		background-color:#FFFFFF;
+		color:#000000;
+		border-width: 1px;
+		padding: 5px;
+		border-style: solid;
+		border-color: #000000;
+		}
+		table.report td {
+		border-width: 1px;
+		padding: 3px;
+		border-style: SOLID;
+		border-color: #000000;
+		background-color: #FFFFFF;
+		-moz-border-radius: ;
+		}
+	</style>";
+	
+	echo "
+		<table class='report' border=1>
+		  <thead>
+			<tr>
+				<th><b>No</b></th>
+				<th><b>Nama Produk</b></th>
+				<th><b>Kategori</b></th>
+				<th><b>Vendor</b></th>
+				<th><b>Stock</b></th>
+				<th><b>Harga</b></th>
+				<th><b>Keterangan</b></th>
+				<th><b>Tanggal dibuat</b></th>
+				<th><b>Tanggal diubah</b></th>
+			</tr>
+		  </thead>
+		  <tbody>
+	";
+	
+	$sql = "SELECT * FROM produk order by Id_Produk asc";
+	$rs  = $db->Execute($sql);
+	$no=1;
+	while($aRow =$rs->FetchRow()){
+		foreach($aRow as $key=>$val){
+		  $key=strtolower($key);
+		  $$key=$val;
+		}
+		$kategori = $db->getOne("select kategori from kategori where id_kategori = '$kategori'");
+		$vendor = $db->getOne("select nama_vendor from vendor where id_vendor = '$vendor'");
+		echo "
+		 
+			<tr>
+			<td>".$no."</td>
+			<td>".$nama_produk."</td>
+			<td>".$kategori."</td>
+			<td>".$vendor."</td>
+			<td>".$stock."</td>
+			<td>".$harga."</td>
+			<td>".$keterangan."</td>
+			<td>".$gen_controller->get_date_indonesia($created_date)."</td>
+			<td>".$gen_controller->get_date_indonesia($last_update)."</td>
+			</tr>
+			
+		";
+		$no++;
+	}
+	
+	echo "</tbody></table>";
+}
 else if($act=="do_delete"){
   if(!empty($_SESSION['user_id'])){ 
     //Paramater

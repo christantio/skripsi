@@ -21,6 +21,6 @@ class pemesanan {
 		  else {
 		  	return $rs->recordCount();
 		  }
-	}
+	}-
 }
 ?>

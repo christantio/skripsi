@@ -7,9 +7,9 @@ $gen_controller  = new General_Controller();
 include "../model/General_Model.php";
 $gen_model      = new General_Model();
 
-//Model kategori
-include "model/kategori.php";
-$md_kategori      = new kategori();
+//Model Pemesanan
+include "model/pemesanan.php";
+$md_pemesanan      = new pemesanan();
 
 //Model User
 include "model/user.php";
@@ -34,7 +34,7 @@ if(isset($_GET['id_parameter'])){
 if($act=="" or $act==null) {
   //View
   include "view/header.php";
-  include "view/kategori.php";
+  include "view/pemesanan.php";
   include "view/footer.php";
 }
 else if($act=="do_add"){
@@ -102,6 +102,45 @@ else if($act=="do_delete"){
   }
 }
 else if($act=="list_rest"){
+  $aColumns = array('ps.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
+  	// Input method (use $_GET, $_POST or $_REQUEST)
+	$input =& $_POST;
+	$iColumnCount = count($aColumns);
+	
+	$sLimit = $gen_controller->Paging($input);	
+	$sOrder = $gen_controller->Ordering($input, $aColumns );
+	$sWhere = $gen_controller->Filtering($aColumns, $iColumnCount, $input);
+	$aQueryColumns = array();
+	foreach ($aColumns as $col) {
+		if ($col != ' ') {
+			$aQueryColumns[] = $col;
+		}
+	}
+
+	$rResult 				= $md_pemesanan->getDataPemesanan($sWhere,$sOrder,$sLimit);
+	$rResultFilterTotal 	= $md_pemesanan->getCountPemesanan($sWhere);
+
+	$output = array(
+		"sEcho"                => (empty($input['sEcho']) ? '0' : intval($input['sEcho'])),
+		"iTotalRecords"        => $rResultFilterTotal,
+		"iTotalDisplayRecords" => $rResultFilterTotal,
+		"aaData"               => array(),
+	);
+
+	while($aRow = $rResult->FetchRow()){
+
+		$param_id = $gen_controller->encrypt($aRow['id_kategori']);
+		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
+		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
+
+		$edit_delete = "<center>".$edit.$delete."</center>";
+	 	$row = array();
+	 	$row = array($aRow['kategori'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+		$output['aaData'][] = $row;
+	}
+	echo json_encode($output);
+}
+else if($act=="list_rest_today"){
   $aColumns = array('ktg.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
   	// Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;

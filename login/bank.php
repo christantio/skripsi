@@ -110,6 +110,82 @@ else if($act=="do_update"){
     echo 'NOT_LOGIN';
   }
 }
+else if($act=="cetak"){
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=Laporan_Bank.xls");
+	echo "<style>
+		table.report {
+		border-width: 1px;
+		border-spacing: ;
+		border-style: solid;
+		border-color: 000000;
+		border-collapse: collapse;
+		background-color: white;
+		width:95%;
+		}
+		
+		table.report tr {
+		
+		background-color:#FFFFFF;
+		
+		}
+		table.report th {
+		background-color:#FFFFFF;
+		color:#000000;
+		border-width: 1px;
+		padding: 5px;
+		border-style: solid;
+		border-color: #000000;
+		}
+		table.report td {
+		border-width: 1px;
+		padding: 3px;
+		border-style: SOLID;
+		border-color: #000000;
+		background-color: #FFFFFF;
+		-moz-border-radius: ;
+		}
+	</style>";
+	
+	echo "
+		<table class='report' border=1>
+		  <thead>
+			<tr>
+				<th><b>No</b></th>
+				<th><b>Nama Bank</b></th>
+				<th><b>No Rekening</b></th>
+				<th><b>Keterangan</b></th>
+				<th><b>Tanggal dibuat</b></th>
+			</tr>
+		  </thead>
+		  <tbody>
+	";
+	
+	$sql = "SELECT * FROM bank order by Id_Bank asc";
+	$rs  = $db->Execute($sql);
+	$no=1;
+	while($aRow =$rs->FetchRow()){
+		foreach($aRow as $key=>$val){
+		  $key=strtolower($key);
+		  $$key=$val;
+		}
+		echo "
+		 
+			<tr>
+			<td>".$no."</td>
+			<td>".$nama."</td>
+			<td>".$no_rek."</td>
+			<td>".$keterangan."</td>
+			<td>".$keterangan."</td>
+			<td>".$gen_controller->get_date_indonesia($created_date)."</td>
+			</tr>
+			
+		";
+		$no++;
+	}
+	
+	echo "</tbody></table>";
+}
 else if($act=="do_delete"){
   if(!empty($_SESSION['user_id'])){ 
     //Paramater

@@ -96,6 +96,7 @@ class General_Model {
 		else {
 			$data = "SELECT * FROM ".$table;
 		}
+		//var_dump($data);
 		$result=$db->getRow($data);
 		if (!$result){
 			return $db->ErrorMsg();

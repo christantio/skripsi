@@ -12,7 +12,7 @@ class customer {
 		  	return $rs;
 		  }
 	}
-	function getCountKategori($where){
+	function getCountCustomer($where){
 		  global $db;
 		  $sql = "SELECT  cs.id_user FROM login as cs ".$where;
 	      $rs  = $db->Execute($sql);
