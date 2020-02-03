@@ -59,12 +59,21 @@ else if($act=="do_add"){
 }
 
 else if($act=="edit" and $id_parameter!=""){
-	$edit = $gen_model->GetOneRow('kategori',array('id_kategori'=>$gen_controller->decrypt($id_parameter))); 
+	$edit = $gen_model->GetOneRow('pesanan',array('id_pesanan'=>$gen_controller->decrypt($id_parameter))); 
 	foreach($edit as $key=>$val){
 	  $key=strtolower($key);
 	  $$key=$val;
     }
-    $data = array('id_kategori'=>$gen_controller->encrypt($id_kategori),'kategori'=>$kategori,'link'=>$link);
+	$kuantitas = $gen_model->GetOne('kuantitas','pesanan_detail',array('no_pesanan'=>$no_pesanan));
+	if ($status == "1"){
+		$nm_sts = "Pending";		
+	}else if ($status == "2"){
+		$nm_sts = "Sukses";
+	}else if ($status == "3"){
+		$nm_sts = "Batal";
+	}
+		
+    $data = array('id_pesanan'=>$gen_controller->encrypt($id_pesanan),'no_pesanan'=>$no_pesanan,'nama'=>$nama,'email'=>$email,'kuantitas'=>$kuantitas,'total_biaya'=>$total_biaya,'tgl_pesan'=>$gen_controller->get_date_indonesia($created_date),'status'=>$nm_sts);
     echo json_encode($data); 
 }
 else if($act=="do_update"){
@@ -102,7 +111,7 @@ else if($act=="do_delete"){
   }
 }
 else if($act=="list_rest"){
-  $aColumns = array('ps.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
+  $aColumns = array('ps.no_pesanan','ps.created_date','ps.last_update','ps.id_pesanan'); //Kolom Pada Tabel  
   	// Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;
 	$iColumnCount = count($aColumns);
@@ -129,25 +138,25 @@ else if($act=="list_rest"){
 
 	while($aRow = $rResult->FetchRow()){
 
-		$param_id = $gen_controller->encrypt($aRow['id_kategori']);
+		$param_id = $gen_controller->encrypt($aRow['id_pesanan']);
 		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
 		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
 	 	$row = array();
-	 	$row = array($aRow['kategori'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['no_pesanan'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);
 }
 else if($act=="list_rest_today"){
-  $aColumns = array('ktg.kategori','ktg.created_date','ktg.last_update','ktg.id_kategori'); //Kolom Pada Tabel  
-  	// Input method (use $_GET, $_POST or $_REQUEST)
+  $aColumns = array('ps.no_pesanan','ps.created_date','ps.last_update','ps.id_pesanan','ps.status','ps.nama','ps.email','ps.total_biaya','ps.tanggal_pesan','ps.jns_pembayaran'); //Kolom Pada Tabel    
+  // Input method (use $_GET, $_POST or $_REQUEST)
 	$input =& $_POST;
 	$iColumnCount = count($aColumns);
 	
 	$sLimit = $gen_controller->Paging($input);	
-	$sOrder = $gen_controller->Ordering($input, $aColumns );
+	$sOrder = $gen_controller->Ordering($input, $aColumns);
 	$sWhere = $gen_controller->Filtering($aColumns, $iColumnCount, $input);
 	$aQueryColumns = array();
 	foreach ($aColumns as $col) {
@@ -156,9 +165,8 @@ else if($act=="list_rest_today"){
 		}
 	}
 
-	$rResult 				= $md_kategori->getDataKategori($sWhere,$sOrder,$sLimit);
-	$rResultFilterTotal 	= $md_kategori->getCountKategori($sWhere);
-
+	$rResult 				= $md_pemesanan->getDataPemesanan($sWhere,$sOrder,$sLimit);
+	$rResultFilterTotal 	= $md_pemesanan->getCountPemesanan($sWhere);
 
 	$output = array(
 		"sEcho"                => (empty($input['sEcho']) ? '0' : intval($input['sEcho'])),
@@ -169,13 +177,21 @@ else if($act=="list_rest_today"){
 
 	while($aRow = $rResult->FetchRow()){
 
-		$param_id = $gen_controller->encrypt($aRow['id_kategori']);
+		$param_id = $gen_controller->encrypt($aRow['id_pesanan']);
 		$edit = '<button data-toggle="modal" data-target="#edit_modal" type="button" onclick=do_edit(\''.$param_id.'\') class="btn btn-gradient-primary btn-rounded btn-icon"><i class="mdi mdi-pencil"></i></button>';
 		$delete = '&nbsp; <button  type="button" onclick=do_delete(\''.$param_id.'\') class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-delete"></i></button>';
 
 		$edit_delete = "<center>".$edit.$delete."</center>";
+		if ($aRow['status'] == "1"){
+			$nm_sts = "Pending";		
+		}else if ($aRow['status'] == "2"){
+			$nm_sts = "Sukses";
+		}else if ($aRow['status'] == "3"){
+			$nm_sts = "Batal";
+		}
+		
 	 	$row = array();
-	 	$row = array($aRow['kategori'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$gen_controller->get_date_indonesia($aRow['last_update'])." ".substr($aRow['last_update'],10,9),"<center>".$edit_delete."</center>");
+	 	$row = array($aRow['no_pesanan'],$aRow['nama'],$aRow['email'],$aRow['kuantitas'],$aRow['total_biaya'],$gen_controller->get_date_indonesia($aRow['created_date'])." ".substr($aRow['created_date'],10,9),$nm_sts,"<center>".$edit_delete."</center>");
 		$output['aaData'][] = $row;
 	}
 	echo json_encode($output);

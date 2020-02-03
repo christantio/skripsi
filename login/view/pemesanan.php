@@ -24,13 +24,13 @@
                       <thead>
                         <tr>
                             <th><b>No. Pesanan</b></th>
-                            <th><b>Status</b></th>
                             <th><b>Nama</b></th>
                             <th><b>No Tlp</b></th>
                             <th><b>Email</b></th>
                             <th><b>Unit</b></th>
                             <th><b>Biaya</b></th>
                             <th><b>Tanggal dibuat</b></th>
+                            <th><b>Status</b></th>
                             <th><b>Aksi</b></th>
                         </tr>
                       </thead>

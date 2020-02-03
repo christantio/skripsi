@@ -16,6 +16,7 @@ session_start();
 if(empty($_SESSION['username'])){
   $gen_controller->redirect('');
 }
+
 //View
 include "view/header.php";
 include "view/home.php";

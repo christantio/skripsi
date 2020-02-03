@@ -271,7 +271,7 @@ class General_Controller {
 				for ( $i=0 ; $i<$iSortingCols ; $i++ ) {
 					if ( $input[ 'bSortable_'.intval($input['iSortCol_'.$i]) ] == 'true' ) {
 						$aOrderingRules[] =
-						$aColumns[ intval( $input['iSortCol_'.$i] ) ]." "
+						$aColumns[ @intval( $input['iSortCol_'.$i] ) ]." "
 						.($input['sSortDir_'.$i]==='asc' ? 'asc' : 'desc');
 					}
 				}

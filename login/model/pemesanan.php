@@ -2,8 +2,9 @@
 class pemesanan { 
 	function getDataPemesanan($where,$order,$limit){
 		  global $db;
-		  $sql = "SELECT  ps.* FROM pesanan as ps
-					".$where."  ".$order.$limit;
+		  $sql = "SELECT  ps.*,b.kuantitas FROM pesanan as ps
+		          left join pesanan_detail b on ps.no_pesanan=b.no_pesanan 
+				  ".$where."  ".$order.$limit;
 	      $rs  = $db->Execute($sql);
 		  if(!$rs) {
 		  	return $db->ErrorMsg();	
@@ -21,6 +22,6 @@ class pemesanan {
 		  else {
 		  	return $rs->recordCount();
 		  }
-	}-
+	}
 }
 ?>

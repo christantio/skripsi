@@ -32,7 +32,7 @@
                           <i class="mdi mdi-cart mdi-24px"></i>
                         </div>
                         <div>
-              <?php $count_pending = $gen_model->GetOne('count(*)','pesanan_detail',array('status'=>'1')); ?>
+              <?php $count_pending = $gen_model->GetOne('count(*)','pesanan',array('status'=>'1')); ?>
                           <h3><?php echo  (empty($count_pending) ? '0' : $count_pending) ?></h3>
                           <p class="mb-0">Pemesanan Pending</p>
                         </div>
@@ -91,12 +91,12 @@
                             <thead>
                               <tr>
                                   <th><b>No. Pesanan</b></th>
-                                  <th><b>Status</b></th>
                                   <th><b>Nama</b></th>
                                   <th><b>Email</b></th>
                                   <th><b>Kuantitas</b></th>
                                   <th><b>Biaya</b></th>
                                   <th><b>Tanggal dibuat</b></th>
+                                  <th><b>Status</b></th>
                                   <th><b>Aksi</b></th>
                               </tr>
                             </thead>
@@ -162,13 +162,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="exampleInputName1"><b>No.Pesanan</b></label>
-                        <br><span id="no_order"></span>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="exampleInputName1"><b>Status</b></label>
-                        <br><span id="status"></span>
+                        <br><span id="no_pesanan"></span>
                       </div>
                     </div> 
                     <div class="col-md-12">
@@ -179,38 +173,16 @@
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputName1"><b>No.Telp</b></label>
-                        <br><span id="tlp"></span>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
                         <label for="exampleInputName1"><b>Email</b></label>
                         <br><span id="email"></span>
                       </div>
                     </div>
                      <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputName1"><b>Alamat</b></label>
-                        <br><span id="alamat"></span>
+                        <label for="exampleInputName1"><b>Kuantitas</b></label>
+                        <br><span id="kuantitas"></span>
                       </div>
                     </div> 
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="exampleInputName1"><b>Jasa</b></label>
-                        <br><span id="jasa"></span>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="exampleInputName1"><b>Unit</b></label>
-                        <br><span id="unit"></span>
-                      </div>
-                    </div>
-
-                    <div id="detail_data" style="margin-left: 4%;">
-                    </div>
-
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="exampleInputName1"><b>Total Biaya</b></label>
@@ -221,6 +193,12 @@
                       <div class="form-group">
                         <label for="exampleInputName1"><b>Tanggal Pesan</b></label>
                         <br><span id="tgl_pesan"></span>
+                      </div>
+                    </div>
+					<div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputName1"><b>Status</b></label>
+                        <br><span id="status"></span>
                       </div>
                     </div>
                   </div>
@@ -260,20 +238,16 @@
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
-              $("#no_order").html(data.no_order);
-              $("#unit").html(data.unit);
-              $("#jasa").html(data.tipe);
+              $("#no_pesanan").html(data.no_pesanan);
+              $("#nama").html(data.nama);
               $("#nama").html(data.nama);
               $("#email").html(data.email);
-              $("#status").html(data.status);
-              $("#tlp").html(data.tlp);
-              $("#alamat").html(data.alamat);
-              $("#jadwal").html(data.jadwal);
-              $("#biaya").html(data.biaya);
+              $("#kuantitas").html(data.kuantitas);
+              $("#biaya").html(data.total_biaya);
               $("#tgl_pesan").html(data.tgl_pesan);
-              $("#unit").html(data.unit);
-
-              do_detail(data.no_order);
+              $("#status").html(data.status);
+			  
+              do_detail(data.no_pesanan);
           }
       });
   }
@@ -351,7 +325,7 @@
           "scrollX": true,
           // "scrollY": "350px",
           "scrollCollapse": true,
-          "order": [[ 9, "desc" ]],
+          "order": [[ 7, "desc" ]],
           "columnDefs": [
           { "orderable": true, "targets": 0, "searchable": true},
           { "orderable": true, "targets": 1, "searchable": true,"width":120 },
@@ -360,10 +334,7 @@
           { "orderable": true, "targets": 4, "searchable": true,"width":120 },
           { "orderable": true, "targets": 5, "searchable": true,"width":120 },
           { "orderable": false, "targets": 6, "searchable": false,"width":120 },
-          { "orderable": true, "targets": 7, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 8, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 9, "searchable": true,"width":120 },
-          { "orderable": false, "targets": 10, "searchable": false,"width":140 }
+          { "orderable": true, "targets": 7, "searchable": true,"width":120 }
           ]
       });
 });
