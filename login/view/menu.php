@@ -36,6 +36,12 @@
               <span class="menu-title">Perencanaan</span>              
             </a>
           </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="konfirmasi">
+              <i class="mdi mdi-cart menu-icon"></i>              
+              <span class="menu-title">Konfirmasi</span>              
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="testimoni">
               <i class="mdi mdi-thumbs-up-down menu-icon"></i>              
