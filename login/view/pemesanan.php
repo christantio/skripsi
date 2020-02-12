@@ -1,22 +1,19 @@
 <title>List Pemesanan - <?php echo $web['judul_web']?></title>
-<style>
-    #order-listing th {
-       text-align: center;   
-       font-weight:bold;
-    }
-    #order-listing>tbody>tr>td
-    {
-      white-space: nowrap;
-    }
-  </style>
 <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
               Data List Pemesanan
             </h3>
+			<div class="col-sm-8 col-xs-9 text-right m-b-20">
+                  <a href="pemesanan/cetak/" class="btn btn-gradient-success btn-fw"><i class="mdi mdi-printer"></i> Cetak Pemesanan</a>
+            </div>
           </div>
           <div class="card">
             <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4 col-xs-3">
+                </div>
+              </div><br/>
               <div class="row">
                 <div class="col-12">
                   <div class="table-responsive">
@@ -25,7 +22,6 @@
                         <tr>
                             <th><b>No. Pesanan</b></th>
                             <th><b>Nama</b></th>
-                            <th><b>No Tlp</b></th>
                             <th><b>Email</b></th>
                             <th><b>Unit</b></th>
                             <th><b>Biaya</b></th>
@@ -43,48 +39,11 @@
           </div>
         </div>
 
-       
-
-        <div class="modal fade" id="status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style="width:350px;overflow-x:hidden;overflow-y:auto; max-height:400px;">
+        <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" style="width: 650px;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Ganti Status Pesanan</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form class="forms-sample" id="form_status" method="POST" autocomplete="off">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1">Status <span class="text-danger">*</span></label>
-                          <input  id="id_parameter" name="id_parameter"  type="hidden" required>
-                          <select style="color:black" class="form-control" id="mystatus" name="status" required>
-                              <option value="">Pilih Status</option>
-                              <option value="Cancel">Cancel</option>
-                              <option value="Sukses">Sukses</option>
-                          </select>
-                        </div>
-                      </div> 
-                    </div>
-                    <div class="modal-footer">
-                      <div class="col-md-12">
-                        <button type="submit" class="btn btn-success">Update Status</button>
-                      </div>
-                    </div>
-                    </form>
-                  </div>
-                </div>
-             </div>
-          </div>
-
-          <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style="width: 850px;overflow-x:hidden;overflow-y:auto; max-height:400px;">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Update Status</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -94,136 +53,77 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1"><b>No.Pesanan</b></label>
-                          <br><span id="no_order"></span>
-                        </div>
-                      </div>
+							<label for="exampleInputName1">No Pesanan <span class="text-danger">*</span></label>
+							<input class="form-control" id="no_pesanan" name="no_pesanan" placeholder="No Pesanan" type="text" required readOnly>
+							 <input id="id_parameter" name="id_parameter" type="hidden" required>
+						</div>
+					  </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1"><b>Status</b></label>
-                          <br><span id="status"></span>
+							<label for="exampleInputName1">Nama <span class="text-danger">*</span></label>
+							<input class="form-control" id="nama" name="nama" maxlength=15 placeholder="Nama" type="text" required disabled style='background-color:#ddd'>
+						</div>
+					  </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+							<label for="exampleInputName1">Email<span class="text-danger">*</span></label>
+							<input class="form-control" id="email" name="email" maxlength=15 placeholder="email" type="text" required disabled style='background-color:#ddd'>
+						</div>
+					  </div>
+					 <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Unit <span class="text-danger">*</span></label>
+						  <input class="form-control" id="unit" name="unit" maxlength=15 placeholder="Unit" type="text" required disabled style='background-color:#ddd'>
+                        </div>
+                      </div>	
+					 <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Jumlah bayar <span class="text-danger">*</span></label>
+						  <input class="form-control" id="jumlah_bayar" name="jumlah_bayar" maxlength=15 placeholder="jumlah bayar" type="text" required disabled style='background-color:#ddd'>
+                        </div>
+                      </div>	  
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Status <span class="text-danger">*</span></label>
+                          <select style="color:black" class="form-control" id="status1" name="status1" required>
+                              <option value="">Pilih Status</option>
+                              <option value="1">Pending</option>
+                              <option value="2">Sukses</option>
+                              <option value="3">Tolak</option>
+                          </select>
                         </div>
                       </div> 
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Nama</b></label>
-                          <br><span id="nama"></span>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>No.Telp</b></label>
-                          <br><span id="tlp"></span>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Email</b></label>
-                          <br><span id="email"></span>
-                        </div>
-                      </div>
-                       <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Alamat</b></label>
-                          <br><span id="alamat"></span>
-                        </div>
-                      </div> 
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Jasa</b></label>
-                          <br><span id="jasa"></span>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Unit</b></label>
-                          <br><span id="unit"></span>
-                        </div>
-                      </div>
-
-                      <div id="detail_data" style="margin-left: 4%;">
-                      </div>
-
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Total Biaya</b></label>
-                          <br><span id="biaya"></span>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Jadwal Service</b></label>
-                          <br><span id="jadwal"></span>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1"><b>Tanggal Pesan</b></label>
-                          <br><span id="tgl_pesan"></span>
-                        </div>
-                      </div>
                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Ubah</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
                   </div>
                   </form>
                 </div>
              </div>
           </div>
-
   <script type="text/javascript">
-  $("#form_status").on("submit", function (event) {
+
+  $("#form_edit").on("submit", function (event) {
     event.preventDefault();
-      do_act('form_status','pemesanan/update_status','','Ubah Status','Anda ingin mengubah status pemesanan ini ?','warning');
-  });  
-  function do_status(id){
-    $.ajax({
-          url: '<?php echo $basepath_admin ?>pemesanan/edit/'+id,
-          type: 'POST',
-          dataType: 'JSON',
-          success: function(data) {
-              $("#id_parameter").val(data.id_pesanan);
-              $("#mystatus").val(data.status2);
+	  do_act('form_edit','pemesanan/do_update','','Ubah Pemesanan','Anda ingin mengubah Pemesanan ?','warning');
+  });
 
-              if(data.status2=="Pending"){
-                $("#mystatus").val("");
-              }
-              // else if(data.status2=="Sukses"){
-              //   $("#mystatus").removeAttr('disabled');
-              // }
-
-          }
-      });
-  }
+ 
   function do_edit(id){
     $.ajax({
           url: '<?php echo $basepath_admin ?>pemesanan/edit/'+id,
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
-              $("#no_order").html(data.no_order);
-              $("#unit").html(data.unit);
-              $("#jasa").html(data.tipe);
-              $("#nama").html(data.nama);
-              $("#email").html(data.email);
-              $("#status").html(data.status);
-              $("#tlp").html(data.tlp);
-              $("#alamat").html(data.alamat);
-              $("#jadwal").html(data.jadwal);
-              $("#biaya").html(data.biaya);
-              $("#tgl_pesan").html(data.tgl_pesan);
-              $("#unit").html(data.unit);
-
-              do_detail(data.no_order);
-          }
-      });
-  }
-
-  function do_detail(no_pesanan){
-    $.ajax({
-          url: '<?php echo $basepath_admin ?>pemesanan/detail/'+no_pesanan,
-          type: 'POST',
-          dataType: 'html',
-          success: function(data) {
-              $("#detail_data").html(data);
+            $("#id_parameter").val(data.id_pesanan);
+              $("#no_pesanan").val(data.no_pesanan);
+              $("#nama").val(data.nama);
+              $("#email").val(data.email);
+              $("#unit").val(data.kuantitas);
+              $("#jumlah_bayar").val(data.total_biaya);
+              $("#status1").val(data.status);
           }
       });
   }
@@ -231,14 +131,14 @@
   
    function do_delete(id){
           swal({
-            title: 'Hapus Kritik & Saran',
-            text: 'Anda ingin menghapus Kritik & Saran ? ',
+            title: 'Hapus Pemesanan',
+            text: 'Anda ingin menghapus Pemesanan ?',
             type: 'error',      // warning,info,success,error
             showCancelButton: true,
             showLoaderOnConfirm: true,
             preConfirm: function(){
               $.ajax({
-                  url: '<?php echo $basepath_admin ?>kritik_saran/do_delete',
+                  url: '<?php echo $basepath_admin ?>pemesanan/do_delete',
                   type: 'POST',
                   data: 'id_parameter='+id,
                   success: function(data) {
@@ -290,7 +190,7 @@
           "scrollX": true,
           // "scrollY": "350px",
           "scrollCollapse": true,
-          "order": [[ 9, "desc" ]],
+          "order": [[ 6, "desc" ]],
           "columnDefs": [
           { "orderable": true, "targets": 0, "searchable": true},
           { "orderable": true, "targets": 1, "searchable": true,"width":120 },
@@ -298,14 +198,9 @@
           { "orderable": true, "targets": 3, "searchable": true,"width":120 },
           { "orderable": true, "targets": 4, "searchable": true,"width":120 },
           { "orderable": true, "targets": 5, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 6, "searchable": false,"width":120 },
-          { "orderable": true, "targets": 7, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 8, "searchable": true,"width":120 }
+          { "orderable": true, "targets": 6, "searchable": true,"width":120 }
           ]
       });
 });
 
- function report(no_pesanan){
-         window.open("<?php echo $basepath ?>report/"+no_pesanan, '_blank');
-      }
 </script>
