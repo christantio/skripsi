@@ -38,8 +38,14 @@
           </li>
 		  <li class="nav-item">
             <a class="nav-link" href="konfirmasi">
-              <i class="mdi mdi-cart menu-icon"></i>              
+              <i class="mdi mdi-alert-circle menu-icon"></i>              
               <span class="menu-title">Konfirmasi</span>              
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="klaim">
+              <i class="mdi mdi-backup-restore menu-icon"></i>              
+              <span class="menu-title">Klaim</span>              
             </a>
           </li>
           <li class="nav-item">

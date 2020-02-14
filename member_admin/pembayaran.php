@@ -278,6 +278,8 @@ else if($act=="do_claim"){
         else {
           echo 'Terjadi kesalahan';
         }
+		
+		
   }
   else {
     echo 'NOT_LOGIN';

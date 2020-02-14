@@ -97,6 +97,7 @@
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="pembayaran">Pembayaran</a>
             <a class="collapse-item" href="pembatalan">Pembatalan</a>
+            <a class="collapse-item" href="testimoni">Testimoni</a>
           </div>
         </div>
       </li>

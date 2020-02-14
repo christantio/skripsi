@@ -19,7 +19,8 @@
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total tabungan</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
 					  <?php 
-							$jumlah = $db->getOne("select sum (jumlah_bayar) from pembayaran where email='".$_SESSION['email']."' and status = '2'");
+							//$jumlah = $gen_model->getOne("select sum (jumlah_bayar) as jumlah from pembayaran where email='".$_SESSION['email']."' and status = '2'");
+							$jumlah = $gen_model->GetOne('sum(jumlah_bayar)','pembayaran',array('email'=>"".$_SESSION['email']."",'status'=>'2'));
 							echo "Rp. ";
 							echo $gen_controller->ribuan($jumlah);
 					  ?>
@@ -42,7 +43,8 @@
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah claim</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
 					  <?php 
-							$claim = $db->getOne("select sum (jumlah_bayar) from pembayaran where email='".$_SESSION['email']."' and status = '4'");
+							$claim = $gen_model->GetOne('sum(jumlah_bayar)','pembayaran',array('email'=>"".$_SESSION['email']."",'status'=>'4'));	
+							//$claim = $db->getOne("select sum (jumlah_bayar) from pembayaran where email='".$_SESSION['email']."' and status = '4'");
 							echo "Rp. ";
 							echo $gen_controller->ribuan($claim);
 					  ?>
@@ -91,7 +93,8 @@
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Transaksi</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
 					  <?php 
-							$ttl = $db->getOne("select count (1) from pesanan where email='".$_SESSION['email']."' and status = '1'");
+							$ttl = $gen_model->GetOne('count(1)','pesanan',array('email'=>"".$_SESSION['email'].""));
+							//$ttl = $db->getOne("select count (1) from pesanan where email='".$_SESSION['email']."' and status = '1'");
 							echo $gen_controller->ribuan($ttl);
 					  ?>
 					  </div>

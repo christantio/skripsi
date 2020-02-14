@@ -74,5 +74,8 @@
  RewriteRule konfirmasi/?$    					konfirmasi.php [L]   
  RewriteRule konfirmasi/([^/.]+)/?$				konfirmasi.php?do_act=$1  [L]	 
  RewriteRule konfirmasi/([^/.]+)/([^/.]+)?$		konfirmasi.php?do_act=$1&id_parameter=$2  [L]
- 
+
+ RewriteRule klaim/?$    						klaim.php [L]   
+ RewriteRule klaim/([^/.]+)/?$					klaim.php?do_act=$1  [L]	 
+ RewriteRule klaim/([^/.]+)/([^/.]+)?$			klaim.php?do_act=$1&id_parameter=$2  [L] 
 </IfModule>

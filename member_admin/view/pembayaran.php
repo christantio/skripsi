@@ -22,6 +22,7 @@
                     <tr>
                       <th>No</th>
                       <th>No Invoice</th>
+                      <th>No Pesan</th>
                       <th>Produk</th>
                       <th>Jumlah</th>
                       <th>Tanggal Bayar</th>
@@ -31,7 +32,7 @@
                   </thead>
                   <tbody>
 				   <?php 
-				   $sql = "SELECT * FROM pembayaran where email = '".$_SESSION['email']."' and status='1'";		
+				   $sql = "SELECT * FROM pembayaran where email = '".$_SESSION['email']."' and status='2'";		
 				   $rs  = $db->Execute($sql);
 				   $no=0;
 				   while($aRow = $rs->FetchRow()){
@@ -52,6 +53,7 @@
 					echo "<tr>
 						<td>".++$no."</td>
 						<td>$no_invoice</td>
+						<td>$no_pesan</td>
 						<td>$nama_produk</td>
 						<td>$jumlah_bayar</td>
 						<td>".$gen_controller->get_date_indonesia($created_date)."</td>

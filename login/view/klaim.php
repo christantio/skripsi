@@ -1,11 +1,11 @@
-<title>List Konfirmasi - <?php echo $web['judul_web']?></title>
+<title>List Klaim - <?php echo $web['judul_web']?></title>
 <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-              Data List Konfirmasi
+              Data List Klaim
             </h3>
 			<div class="col-sm-8 col-xs-9 text-right m-b-20">
-                  <a href="konfirmasi/cetak/" class="btn btn-gradient-success btn-fw"><i class="mdi mdi-printer"></i> Cetak Konfirmasi</a>
+                  <a href="klaim/cetak/" class="btn btn-gradient-success btn-fw"><i class="mdi mdi-printer"></i> Cetak Klaim</a>
             </div>
           </div>
           <div class="card">
@@ -24,8 +24,7 @@
                             <th><b>No. Pesanan</b></th>
                             <th><b>Email</b></th>
                             <th><b>Nominal</b></th>
-                            <th><b>Tanggal Bayar</b></th>
-                            <th><b>Bukti</b></th>
+                            <th><b>Tanggal Pengajuan</b></th>
                             <th><b>Status</b></th>
                             <th><b>Aksi</b></th>
                         </tr>
@@ -72,8 +71,8 @@
 					  </div>
 					 <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1">Jumlah bayar <span class="text-danger">*</span></label>
-						  <input class="form-control" id="jumlah_bayar" name="jumlah_bayar" maxlength=15 placeholder="jumlah bayar" type="text" required disabled style='background-color:#ddd'>
+                          <label for="exampleInputName1">Jumlah Klaim <span class="text-danger">*</span></label>
+						  <input class="form-control" id="jumlah_klaim" name="jumlah_klaim" maxlength=15 placeholder="jumlah klaim" type="text" required disabled style='background-color:#ddd'>
                         </div>
                       </div>	  
 					  <div class="col-md-12">
@@ -87,12 +86,6 @@
                           </select>
                         </div>
                       </div> 
-					  <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="exampleInputName1">Bukti Bayar </label><br/>
-                          <center><img style="width:600px" src="#" id="gambar_edit"></center>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -113,18 +106,17 @@
  
   function do_edit(id){
     $.ajax({
-          url: '<?php echo $basepath_admin ?>konfirmasi/edit/'+id,
+          url: '<?php echo $basepath_admin ?>klaim/edit/'+id,
           type: 'POST',
           dataType: 'JSON',
           success: function(data) {
             console.log(data);
-			  $("#id_parameter").val(data.id_pembayaran);
+			  $("#id_parameter").val(data.id_claim);
               $("#no_invoice").val(data.no_invoice);
               $("#no_pesan").val(data.no_pesan);
               $("#email").val(data.email);
-              $("#jumlah_bayar").val(data.jumlah_bayar);
+              $("#jumlah_klaim").val(data.jumlah_claim);
               $("#status").val(data.status);
-			  $("#gambar_edit").attr("src",data.gambar);
           }
       });
   }
@@ -132,14 +124,14 @@
   
    function do_delete(id){
           swal({
-            title: 'Hapus Bank',
-            text: 'Anda ingin menghapus Bank ?',
+            title: 'Hapus Klaim',
+            text: 'Anda ingin menghapus Klaim ?',
             type: 'error',      // warning,info,success,error
             showCancelButton: true,
             showLoaderOnConfirm: true,
             preConfirm: function(){
               $.ajax({
-                  url: '<?php echo $basepath_admin ?>bank/do_delete',
+                  url: '<?php echo $basepath_admin ?>klaim/do_delete',
                   type: 'POST',
                   data: 'id_parameter='+id,
                   success: function(data) {
@@ -186,12 +178,12 @@
           "bJQueryUI": false,
           "responsive": false,
           "autoWidth": false,
-          "sAjaxSource": "<?php echo $basepath_admin ?>konfirmasi/list_rest", 
+          "sAjaxSource": "<?php echo $basepath_admin ?>klaim/list_rest", 
           "sServerMethod": "POST",
           "scrollX": true,
           // "scrollY": "350px",
           "scrollCollapse": true,
-          "order": [[ 7, "desc" ]],
+          "order": [[ 6, "desc" ]],
           "columnDefs": [
           { "orderable": true, "targets": 0, "searchable": true},
           { "orderable": true, "targets": 1, "searchable": true,"width":120 },
@@ -199,8 +191,7 @@
           { "orderable": true, "targets": 3, "searchable": true,"width":120 },
           { "orderable": true, "targets": 4, "searchable": true,"width":120 },
           { "orderable": true, "targets": 5, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 6, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 7, "searchable": true,"width":100 }
+          { "orderable": true, "targets": 6, "searchable": true,"width":100 }
           ]
       });
 });
