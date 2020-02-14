@@ -25,6 +25,8 @@
                             <th><b>Email</b></th>
                             <th><b>Unit</b></th>
                             <th><b>Biaya</b></th>
+                            <th><b>Jumlah Cicilan</b></th>
+                            <th><b>Lama Cicilan</b></th>
                             <th><b>Tanggal dibuat</b></th>
                             <th><b>Status</b></th>
                             <th><b>Aksi</b></th>
@@ -78,10 +80,22 @@
                       </div>	
 					 <div class="col-md-12">
                         <div class="form-group">
-                          <label for="exampleInputName1">Jumlah bayar <span class="text-danger">*</span></label>
+                          <label for="exampleInputName1">Biaya <span class="text-danger">*</span></label>
 						  <input class="form-control" id="jumlah_bayar" name="jumlah_bayar" maxlength=15 placeholder="jumlah bayar" type="text" required disabled style='background-color:#ddd'>
                         </div>
-                      </div>	  
+                      </div>	
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Jumlah Cicilan <span class="text-danger">*</span></label>
+						  <input class="form-control" id="jml_cicilan" name="jml_cicilan" maxlength=15 placeholder="Jumlah Cicilan" type="text" required disabled style='background-color:#ddd'>
+                        </div>
+                      </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputName1">Lama Cicilan <span class="text-danger">*</span></label>
+						  <input class="form-control" id="jml_bulan" name="jml_bulan" maxlength=15 placeholder="Jumlah Bulan" type="text" required disabled style='background-color:#ddd'>
+                        </div>
+                      </div>
 					  <div class="col-md-12">
                         <div class="form-group">
                           <label for="exampleInputName1">Status <span class="text-danger">*</span></label>
@@ -123,6 +137,8 @@
               $("#email").val(data.email);
               $("#unit").val(data.kuantitas);
               $("#jumlah_bayar").val(data.total_biaya);
+              $("#jml_cicilan").val(data.jml_cicilan);
+              $("#jml_bulan").val(data.jml_bulan);
               $("#status1").val(data.status);
           }
       });
@@ -190,7 +206,7 @@
           "scrollX": true,
           // "scrollY": "350px",
           "scrollCollapse": true,
-          "order": [[ 6, "desc" ]],
+          "order": [[ 8, "desc" ]],
           "columnDefs": [
           { "orderable": true, "targets": 0, "searchable": true},
           { "orderable": true, "targets": 1, "searchable": true,"width":120 },
@@ -198,7 +214,9 @@
           { "orderable": true, "targets": 3, "searchable": true,"width":120 },
           { "orderable": true, "targets": 4, "searchable": true,"width":120 },
           { "orderable": true, "targets": 5, "searchable": true,"width":120 },
-          { "orderable": true, "targets": 6, "searchable": true,"width":120 }
+          { "orderable": true, "targets": 6, "searchable": true,"width":120 },
+          { "orderable": true, "targets": 7, "searchable": true,"width":120 },
+          { "orderable": true, "targets": 8, "searchable": true,"width":100 }
           ]
       });
 });

@@ -33,7 +33,8 @@
           <li class="nav-item">
             <a class="nav-link" href="pemesanan">
               <i class="mdi mdi-cart menu-icon"></i>              
-              <span class="menu-title">Perencanaan</span>              
+              <span class="menu-title">Pemesanan</span>              
+              <!--<span class="menu-title">Perencanaan</span>-->              
             </a>
           </li>
 		  <li class="nav-item">
