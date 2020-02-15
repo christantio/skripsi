@@ -198,25 +198,53 @@ else if($act=="do_claim"){
   }
 }
 else if($act=="edit" and $id_parameter!=""){
-    $edit = $gen_model->GetOneRow('testimoni',array('id_testi'=>$gen_controller->decrypt($id_parameter))); 
-	foreach($edit as $key=>$val){
-	  $key=strtolower($key);
-	  $$key=$val;
-    }
-    $data = array('id_parameter'=>$id_parameter,'nama'=>$nama,'isi'=>$isi,'email'=>$email,'produk'=>$produk);
-    echo json_encode($data); 
-}
-else if($act=="bayar"){
 	 //View
 	include "view/header.php";
-	include "view/pembayaran_bayar.php";
+	include "view/testimoni_edit.php";
 	include "view/footer.php";
 }
-else if($act=="claim"){
-	 //View
-	include "view/header.php";
-	include "view/pembatalan_bayar.php";
-	include "view/footer.php";
+else if($act=="do_delete"){
+  if(!empty($_SESSION['user_id'])){ 
+    //Paramater
+    $where_data = array();
+    $where_data['id_testi']  = $id_parameter;
+    echo $gen_model->Delete('testimoni',$where_data);
+	echo "
+						<link href=\"".$basepath."assets/css/bootstrap.css\" rel=\"stylesheet\" />
+						<link href=\"".$basepath."assets/css/font-awesome.css\" rel=\"stylesheet\" />
+						<link href=\"".$basepath."assets/css/style.css\" rel=\"stylesheet\" />
+				";
+				echo "
+				<p align=center>
+				<div class=\"row\">
+					<div class=\"col-md-6 col-md-offset-3\">
+						<!-- begin panel -->
+						<div class=\"panel panel-info\" data-sortable-id=\"ui-widget-12\">
+							<div class=\"panel-heading\">
+								<h4 class=\"panel-title\">Info</h4>
+							</div>
+							<div class=\"panel-body bg-aqua text-white\">
+								<div class=\"row\">
+									<div class=\"col-md-2\">
+										<i class=\"fa fa-info-circle fa-3x\" aria-hidden=\"true\"></i>
+									</div>
+									<div class=\"col-md-10\">
+										<p>Data Berhasil Disimpan</p>
+										<p><button class=\"btn btn-inverse\" onClick=location.href='testimoni'>&laquo; Kembali</button></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end panel -->
+					</div>
+				</div>
+				</p>
+				";
+				die();
+			}
+  else {
+    echo 'NOT_LOGIN';
+  }
 }
 else {
 	$gen_controller->response_code(http_response_code());

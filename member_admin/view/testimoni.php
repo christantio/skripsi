@@ -50,7 +50,7 @@
 							<td>".$gen_controller->get_date_indonesia($last_update)."</td>
 							<td>
 							<center><button data-toggle='modal' type='button' class='btn btn-gradient-primary btn-rounded btn-icon' onClick=location.href='testimoni?act=edit&id_parameter=$id_testi'><i class='mdi mdi-pencil'></i></button> 
-							&nbsp; <button  type='button' class='btn btn-gradient-danger btn-rounded btn-icon'><i class='mdi mdi-delete'></i></button>
+							&nbsp; <button  type='button' class='btn btn-gradient-danger btn-rounded btn-icon' onClick=location.href='testimoni?act=do_delete&id_parameter=$id_testi'><i class='mdi mdi-delete'></i></button>
 							</center></td>
 					   </tr>";
 				   }

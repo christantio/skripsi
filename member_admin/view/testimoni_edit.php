@@ -8,22 +8,8 @@
 			
             <div class="card-body">
               <div class="table-responsive">
-					<h4>Claim</h4>
+					<h4>Testimoni</h4>
 					<br>
-					<?php 
-						$no_pesanan = $_GET['no_pesanan'];
-						$sql = "SELECT b.nama,b.no_rek,b.keterangan FROM pesanan a left join bank b on a.jns_pembayaran = b.id_bank
-							where a.no_pesanan='".$no_pesanan."'";
-							$result = $db->Execute($sql);
-							while($aRow = $result->FetchRow()){
-							   foreach ($aRow as $key=>$val) {
-									$key = strtolower($key);
-									$$key = $val;
-								}
-							}
-						echo "<small>Saldo akan sepenuhnya masuk dalam total klaim anda </i></small>";	
-					?>	
-					
 					 <form action="pembayaran?act=do_claim" method=POST class="aa-login-form" enctype="multipart/form-data" onsubmit=\"return validation()\">
 						
 						<?php 
