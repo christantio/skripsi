@@ -4,8 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Taruh Semua Script Diatas ini -->
-    <!-- Font awesome -->
-    <link href="<?php echo $basepath ?>assets/css/font-awesome.css" rel="stylesheet">
+    <!-- Font awesome 
+    <link href="<?php echo $basepath ?>assets/css/font-awesome.css" rel="stylesheet">-->
     <!-- Bootstrap -->
     <link href="<?php echo $basepath ?>assets/css/bootstrap.css" rel="stylesheet">
 	<script src="<?php echo $basepath ?>assets/js/rupiah.js"></script>	

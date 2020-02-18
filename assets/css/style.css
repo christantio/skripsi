@@ -36,6 +36,7 @@
 */
 
 /* BASE - Base tyles, Variables, Mixins, etc. */
+
 body {
   background-color: #ffffff;
   font-family: "Lato", sans-serif;
@@ -64,6 +65,7 @@ a:hover,
 a:focus {
   outline: none;
   text-decoration: none;
+  color: #000;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -173,6 +175,20 @@ img {
   text-transform: uppercase;
   transition: all 0.5s ease 0s;
 }
+
+.aa-add-to-cart-btn1 {
+  border: 1px solid #ccc;
+  color: #555;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin-top: 5px;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  transition: all 0.5s ease 0s;
+}
+
 .aa-add-to-cart-btn span {
   margin-right: 5px;
 }
@@ -2226,9 +2242,10 @@ img {
   font-size: 18px;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-bottom .nav-tabs li a:hover, #aa-product-details .aa-product-details-area .aa-product-details-bottom .nav-tabs li a:focus {
-  background-color: transparent;
+  background-color: #a39e9e;
   border: none;
 }
+
 #aa-product-details .aa-product-details-area .aa-product-details-bottom #description {
   padding: 20px 10px;
 }

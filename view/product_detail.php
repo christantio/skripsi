@@ -91,24 +91,24 @@
                       </p>
                     </div>-->
                     <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="product_detail?act=do_add&id_parameter=<?php echo $id_produk; ?>">Mulai Nabung</a>
+                      <a class="aa-add-to-cart-btn1" href="product_detail?act=do_add&id_parameter=<?php echo $id_produk; ?>">Mulai Nabung</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="aa-product-details-bottom">
-              <ul class="nav nav-tabs" id="myTab2">
-                <li><a href="#description" data-toggle="tab">Deskripsi</a></li>
-                <li><a href="#review" data-toggle="tab">Reviews</a></li>                
+           <div class="aa-product-details-bottom"></div>
+           <!--   <ul class="nav nav-tabs" id="myTab2">
+                <li><a href="description">Deskripsi</a></li>
+                <li><a href="review">Reviews</a></li>                
               </ul>
 
-              <!-- Tab panes -->
+              Tab panes
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="description">
                   <p><?php echo $keterangan; ?></p>
                 </div>
-                <div class="tab-pane fade " id="review">
+                <div class="tab-pane fade in active" id="review">
                  <div class="aa-product-review-area">
                    <h4>2 Reviews for T-Shirt</h4> 
                    <ul class="aa-review-nav">
@@ -162,7 +162,6 @@
                      <a href="#"><span class="fa fa-star-o"></span></a>
                      <a href="#"><span class="fa fa-star-o"></span></a>
                    </div>
-                   <!-- review form -->
                    <form action="" class="aa-review-form">
                       <div class="form-group">
                         <label for="message">Your Review</label>
@@ -182,7 +181,7 @@
                  </div>
                 </div>            
               </div>
-            </div>
+            </div>-->
             <!-- Related product -->
             <div class="aa-product-related-item">
               <h3>Produk Lainnya</h3>
