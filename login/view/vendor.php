@@ -83,7 +83,7 @@
                         <div class="form-group">
                           <label for="exampleInputName1">Vendor <span class="text-danger">*</span></label>
                           <input class="form-control" id="nama_vendor1" name="nama_vendor" value="" placeholder="Vendor" type="text" required>
-                          <input id="id_parameter" name="id_parameter" type="text" required>
+                          <input id="id_parameter" name="id_parameter" type="hidden" required>
                         </div>
                       </div>
                     </div>
